@@ -7,7 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-psqlpy = "^0.5.5"
+psqlpy = "^0.6.0"
 piccolo = "^1.5.0"
 
 

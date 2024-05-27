@@ -2,13 +2,13 @@
 
 [[package]]
 name = "annotated-types"
-version = "0.6.0"
+version = "0.7.0"
 description = "Reusable constraint types to use with typing.Annotated"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "annotated_types-0.6.0-py3-none-any.whl", hash = "sha256:0641064de18ba7a25dee8f96403ebc39113d0cb953a01429249d5c7564666a43"},
-    {file = "annotated_types-0.6.0.tar.gz", hash = "sha256:563339e807e53ffd9c267e99fc6d9ea23eb8443c08f112651963e24e22f84a5d"},
+    {file = "annotated_types-0.7.0-py3-none-any.whl", hash = "sha256:1f02e8b43a8fbbc3f3e0d4f0f4bfc8131bcb4eebe8849b8e5c773f3a1c582a53"},
+    {file = "annotated_types-0.7.0.tar.gz", hash = "sha256:aff07c09a53a08bc8cfccb9c85b05f1aa9a2a6f23728d790723543408344ce89"},
 ]
 
 [package.dependencies]
@@ -155,13 +155,13 @@ files = [
 
 [[package]]
 name = "jinja2"
-version = "3.1.3"
+version = "3.1.4"
 description = "A very fast and expressive template engine."
 optional = false
 python-versions = ">=3.7"
 files = [
-    {file = "Jinja2-3.1.3-py3-none-any.whl", hash = "sha256:7d6d50dd97d52cbc355597bd845fabfbac3f551e1f99619e39a35ce8c370b5fa"},
-    {file = "Jinja2-3.1.3.tar.gz", hash = "sha256:ac8bd6544d4bb2c9792bf3a159e80bba8fda7f07e81bc3aed565432d5925ba90"},
+    {file = "jinja2-3.1.4-py3-none-any.whl", hash = "sha256:bc5dd2abb727a5319567b7a813e6a2e7318c39f4f487cfe6c89c6f9c7d25197d"},
+    {file = "jinja2-3.1.4.tar.gz", hash = "sha256:4a3aee7acbbe7303aede8e9648d13b8bf88a429282aa6122a993f0ac800cb369"},
 ]
 
 [package.dependencies]
@@ -274,13 +274,13 @@ files = [
 
 [[package]]
 name = "piccolo"
-version = "1.5.0"
+version = "1.5.1"
 description = "A fast, user friendly ORM and query builder which supports asyncio."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "piccolo-1.5.0-py3-none-any.whl", hash = "sha256:2cd5651e16cadaa8e599a5dc0b07426e6700fd44ce8fdd4f0afa78defde6a48b"},
-    {file = "piccolo-1.5.0.tar.gz", hash = "sha256:dde6b96a2bb3fd90a416a0964ec940f22d0d08842ebfefb48585fca14093ede3"},
+    {file = "piccolo-1.5.1-py3-none-any.whl", hash = "sha256:20a16ec2a24c4dae79b230acef0abac436733c4736fdcc0bc867697202adb3b9"},
+    {file = "piccolo-1.5.1.tar.gz", hash = "sha256:fbaa253d3ce904a31e130198f8f7d5711b46ac67ff28ba2522e0c3d06d30d2dc"},
 ]
 
 [package.dependencies]
@@ -302,13 +302,13 @@ uvloop = ["uvloop (>=0.12.0)"]
 
 [[package]]
 name = "platformdirs"
-version = "4.2.1"
+version = "4.2.2"
 description = "A small Python package for determining appropriate platform-specific dirs, e.g. a `user data dir`."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "platformdirs-4.2.1-py3-none-any.whl", hash = "sha256:17d5a1161b3fd67b390023cb2d3b026bbd40abde6fdb052dfbd3a29c3ba22ee1"},
-    {file = "platformdirs-4.2.1.tar.gz", hash = "sha256:031cd18d4ec63ec53e82dceaac0417d218a6863f7745dfcc9efe7793b7039bdf"},
+    {file = "platformdirs-4.2.2-py3-none-any.whl", hash = "sha256:2d7a1657e36a80ea911db832a8a6ece5ee53d8de21edd5cc5879af6530b1bfee"},
+    {file = "platformdirs-4.2.2.tar.gz", hash = "sha256:38b7b51f512eed9e84a22788b4bce1de17c0adb134d6becb09836e37d8654cd3"},
 ]
 
 [package.extras]
@@ -318,76 +318,78 @@ type = ["mypy (>=1.8)"]
 
 [[package]]
 name = "psqlpy"
-version = "0.5.5"
+version = "0.6.0"
 description = "Async PostgreSQL driver for Python written in Rust"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "psqlpy-0.5.5-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:f676ef440113affea1fce20b608e7700bb0d4c053c3a296657d31458a6e6bdbd"},
-    {file = "psqlpy-0.5.5-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:733b4f04d0ad7fa99bfb06d3370ba8b0c6784579a4caf24212b7fb12c9d5acbf"},
-    {file = "psqlpy-0.5.5-cp310-cp310-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:1a4d8804c8431c4af6fc39b4f49b0c97331a839e33147fdae71f346772c777b4"},
-    {file = "psqlpy-0.5.5-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fde92e6889c22e3693f47d40ef43ffc20adedd97aecd6b3beb0c5db202606148"},
-    {file = "psqlpy-0.5.5-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:ae4c7895b939a0f699e64d32626b9fb2b1027864faeea98e3dbe9854e65ba9b9"},
-    {file = "psqlpy-0.5.5-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:53e8214d81b3d417ec262e9924964c347e3f37e39c76f5c50f088575db0b9dda"},
-    {file = "psqlpy-0.5.5-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:fe4e127bc37238eb8350b3d5d9abcca1a06e2a03ce7c0d4afaf60b98670e9b2e"},
-    {file = "psqlpy-0.5.5-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:13aa1d57ad7116c8f6829e2480cf7b0de358e0a6f90923731862976c380f7a31"},
-    {file = "psqlpy-0.5.5-cp310-none-win32.whl", hash = "sha256:a9666dea10725b8e3a184e27d0c2369e1103772ec7c434f85b156a0e97c16d97"},
-    {file = "psqlpy-0.5.5-cp310-none-win_amd64.whl", hash = "sha256:be2a45fedc0ca7a0796321dadcd0d82a70a4a50ff4fadb2b99c24bbe2b328fe5"},
-    {file = "psqlpy-0.5.5-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:6eb21fedeb0166675231178c478bd95f00daa9fb536581e1ef4921db2cf06c8d"},
-    {file = "psqlpy-0.5.5-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:f72027d1d9f6a14c27275f00fe85c2383e260fbfdd09fb05786af78e857f4f63"},
-    {file = "psqlpy-0.5.5-cp311-cp311-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:e53b4a2f34f45a7c7e16a4431aea7f0c8332db5930d6e09c1139c2d6d4b0bd8f"},
-    {file = "psqlpy-0.5.5-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:334bf0eef07c661c9b0620210bad4272f23d83cb4049127f66e857d7b8dd3589"},
-    {file = "psqlpy-0.5.5-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:afbced56b21255a297d9105a058406763a031b0dbdbb25640c023ce012e3c4ad"},
-    {file = "psqlpy-0.5.5-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:b2ed5e3d8f0990ff6b900cf2c1ea4487a5e0d5f9a96735022b152c3049fed4a0"},
-    {file = "psqlpy-0.5.5-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:3ad7f258310cae0c5ee6e517536fcaba76b908a10874083e5ae796ec5495420e"},
-    {file = "psqlpy-0.5.5-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3390fc7a985eb242b1532be515903b360a7139e16880f14e7b32f4388ce963a8"},
-    {file = "psqlpy-0.5.5-cp311-none-win32.whl", hash = "sha256:e0159a9f7c3a87071980fde23cb15f9d1bb0d19b1c1f9231d6c49c1ff844b02f"},
-    {file = "psqlpy-0.5.5-cp311-none-win_amd64.whl", hash = "sha256:0889189f7bc798025ecd1172bf9b76857c1e1ad2453ed21f6b86bf2ea9d3a6d8"},
-    {file = "psqlpy-0.5.5-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:0581090ed2db592ffd7702744cfe9341da0ea7a679c7197ea77a51d0d4e1181b"},
-    {file = "psqlpy-0.5.5-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:a5deb7e166254014f38641d8fe4d1e12ca3fe1c77445ebda7c355b1526030415"},
-    {file = "psqlpy-0.5.5-cp312-cp312-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:63c340c130604387d3a97ad96fb8f872286f4d390ca39d62bf924739496f73fa"},
-    {file = "psqlpy-0.5.5-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a552fe5be0d8f22a6e9f160680a9ac076638b6a130ba0676975e1c69c98bd132"},
-    {file = "psqlpy-0.5.5-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:545165c0a0cb013125b94fcc5f78842635eeb5d1d469b566ee62442c94f0b40d"},
-    {file = "psqlpy-0.5.5-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:62ef96607a987de979f519baf8d396feb1bb47edaaae52cb99fc7bbc1a5429cc"},
-    {file = "psqlpy-0.5.5-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:2fd92bb058a223e42177092c5cdf8d180d3c215012e8b640fcec955bbe76e057"},
-    {file = "psqlpy-0.5.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:cab57aaaf7172f7e4b17ea2d6db59f6b5e1eff8467ac751147b3bc6f229afe8d"},
-    {file = "psqlpy-0.5.5-cp312-none-win32.whl", hash = "sha256:441e69224048809495989a8c3219f57abea97c15042bdc004a21cb8737303510"},
-    {file = "psqlpy-0.5.5-cp312-none-win_amd64.whl", hash = "sha256:338465ebfee1b9c242920cbe5589b46803e25e7b5eec177e0b5f0284a61adb32"},
-    {file = "psqlpy-0.5.5-cp38-cp38-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:a7d3a00eb632bc40eac8e35d9ebc5170f5ecc68c0be052c739fff97374332ac8"},
-    {file = "psqlpy-0.5.5-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:3e60142771badf2813d32b9ef08ab5d73956f2c8ff5a33c116c7e11ca69e15ed"},
-    {file = "psqlpy-0.5.5-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:74daf3c10be85a871eac5989fc3ed6f2e3e2f978f3e2462f888a620dafd8a36e"},
-    {file = "psqlpy-0.5.5-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:752a2651c2cc701002c53010c9d3a702dbaf76deee6243e71c14c12f81a40b8e"},
-    {file = "psqlpy-0.5.5-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:11958dc85337d25dbf2dc77399520aebf539121f376d2a2fe7f772c67b06e661"},
-    {file = "psqlpy-0.5.5-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:4f017300b76eeea40f627900f1af6c91845acd2408507b78ff013c7428809e2d"},
-    {file = "psqlpy-0.5.5-cp38-none-win32.whl", hash = "sha256:1e3d87606eae4a3d8e7a896acf8dae2135932995a262527604a9f231a2426b95"},
-    {file = "psqlpy-0.5.5-cp38-none-win_amd64.whl", hash = "sha256:a8d00b1adb10eadfba5be5e72a0f9f4f106554023b08cae19d0272646e42c881"},
-    {file = "psqlpy-0.5.5-cp39-cp39-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:6d50dae4a984dbcef0f1d048090aa4bf95f2353d7738eae6d76b2d63838d6706"},
-    {file = "psqlpy-0.5.5-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:af9f4914a86305af0f54174584758faa725f7c56530273cf1b92b5c27cb7bba8"},
-    {file = "psqlpy-0.5.5-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:dd38e3e36ac1a6b9c8b594da722a8532c8c439a72c99fa856b0abf0ab00258a6"},
-    {file = "psqlpy-0.5.5-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:d49a0a01e70a1492a6eff217308106b9e2a469f697270394172e987159a1fb44"},
-    {file = "psqlpy-0.5.5-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:994248e8c3cb8104dcc5ddae2a210b70873c72d0e50983fa4d0050430b823c36"},
-    {file = "psqlpy-0.5.5-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:401242611d0056667829f4c8b5a32fa0cf27954dbf1660240306fea5f29fa176"},
-    {file = "psqlpy-0.5.5-cp39-none-win32.whl", hash = "sha256:7ca69ce767eab7cc2eb859b3943b4bd53de62f1c02e9ddc973f6ddff07a04fde"},
-    {file = "psqlpy-0.5.5-cp39-none-win_amd64.whl", hash = "sha256:5635dde5ca5ab0494fc86f68a5a0b06ce663f99fcb1a564c8f1b461ff5bd65ad"},
-    {file = "psqlpy-0.5.5-pp310-pypy310_pp73-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:1d255854688c58e2abc0730305dd9c95c37ece1c0d12ba56b080240dfa205deb"},
-    {file = "psqlpy-0.5.5-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:26655fdb592a706b354fa8152ecbbccc1692f138715b6a6edf4382c3ca2bf692"},
-    {file = "psqlpy-0.5.5-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:93561eb6e10dfb5eb3ca83811fb76533f03d879da8308c682bd4d0e8f1ff2b1e"},
-    {file = "psqlpy-0.5.5-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:0af2d12bafbca379e0d27c5299117273badad4da356cdde43bb52f77f94f2af3"},
-    {file = "psqlpy-0.5.5-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:4c478bd2e77121f078f28d5fc58bbe0dd7424be6dd9b3e5068fd6cec206e043f"},
-    {file = "psqlpy-0.5.5-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:aad5a760c8c857165487e26e0455f400af28aec0700df25b0c500e49ff70d653"},
-    {file = "psqlpy-0.5.5-pp38-pypy38_pp73-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:739e888ce46037266c4b3518f51d89d929cafa5025e4784acae1dbb29f9e1417"},
-    {file = "psqlpy-0.5.5-pp38-pypy38_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8dd5ea34328e996d11ce071abb7543d4875d77a57852eb85eab996a2fd5360cd"},
-    {file = "psqlpy-0.5.5-pp38-pypy38_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:0857c8b153684f7c3dc56a99d3423f2990c7cd6ceb25104ff709b6ad0e6e559d"},
-    {file = "psqlpy-0.5.5-pp38-pypy38_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:cf8b16a9a766c02d3186e1c2d5b4a88f04ca945a79b3f1fdd66315f6efbf9206"},
-    {file = "psqlpy-0.5.5-pp38-pypy38_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:069848c561d524f8a6b3c03f06b1772d102706aa3d8ecd78a62e6d14da8930f9"},
-    {file = "psqlpy-0.5.5-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:8e6e48713260f72b996717c32ac121d27f4b925993394f71232f7222e2a39564"},
-    {file = "psqlpy-0.5.5-pp39-pypy39_pp73-manylinux_2_12_i686.manylinux2010_i686.whl", hash = "sha256:861e1dd3ac077270091ac5b6ee9550f60d2c56ce0fbbbf7c84ad3de5431fd0e8"},
-    {file = "psqlpy-0.5.5-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:68d5455a4e60356512601eb78aad6ad6e879d381598c18bb15771fd39d28a6e4"},
-    {file = "psqlpy-0.5.5-pp39-pypy39_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:cb6e8888a2602be236c12a52ba1ca6358460c4190f55604c6d3805fe81e4782b"},
-    {file = "psqlpy-0.5.5-pp39-pypy39_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:822861a62033dba9606a32f1be497cea66b2c572889b33ef02c5e1b57543eaa6"},
-    {file = "psqlpy-0.5.5-pp39-pypy39_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:9f05730a8843d197e5af168ceb6b5e57b5e6dfd72ed1f0a1c1e1ba36c60aa963"},
-    {file = "psqlpy-0.5.5-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c6dfb02f9b3831d86fc1d370cba831790634bfade6a15c7c7204f044c3eb970f"},
-    {file = "psqlpy-0.5.5.tar.gz", hash = "sha256:53808d05b9d3c24c9c0f688d1dd5ac9972d0ac15896a474ea46e9884ce51fc75"},
+    {file = "psqlpy-0.6.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:7176c8ec1de5ce07a7ddfae007b07379607c75a851df53b79a905ef9b44a1d1b"},
+    {file = "psqlpy-0.6.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:84787f2769d7009c166ba8bc16ed3b799847059a1d5ff707ed78fa62370b7569"},
+    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fa9bf554baf9915dba857df9c5d4a5c5ceae72718bd56cded78189214604c40d"},
+    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:37ae4ecd92eb1804b2089790773d81f53004ebfb7bff78519824ca39aef1dabd"},
+    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:f8b59b89a3dd668872a69d4f0a3f0c25abef48478f986b8b0f2fbb2be31ae12c"},
+    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:6e202fdd043bc1ad03376cf2837fa96786ec7af41f0ddc4c92268527e68b4094"},
+    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:a09c74470c4d79b7adcb2d19c5b1fc40d4f2215e9cd796081b34e283d42ad6dc"},
+    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3f7da0fdc8394da4479e2c2e80f4bee8c4cabd2b2d8f005134af07ca77d6c102"},
+    {file = "psqlpy-0.6.0-cp310-none-win32.whl", hash = "sha256:434e8ac863a236c20b31bda8b2ffa27cfcf2866de44b84e175ba0665f108b339"},
+    {file = "psqlpy-0.6.0-cp310-none-win_amd64.whl", hash = "sha256:197dd530765414e443f30768b402af5bf9bc8bbb5591e9793ba189021dae34d0"},
+    {file = "psqlpy-0.6.0-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:630d1027f2f0aa773ffbd118081720ff8b4dfecf6c454c5895317d6c73a3bcf5"},
+    {file = "psqlpy-0.6.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:c92c99ce0d23ee2091346c7fd4daccc7b1e7501c90b7f9ba6fd580adeea00512"},
+    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:54473412f696fff4aed26792f480ff4f8fed4918c21d75b2ed969f3b18be22b7"},
+    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:21b265916af2897272c427cf2b8ed36db7896d946bdba6fb04010daa393591e0"},
+    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:01a13217d300789b03a728953e75f1bb09af8c2c4388ada27400d935027372a3"},
+    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:c77d27d3a170b6e566063f1ae3701f8418ba3af182083d31c178b31772f2a8f2"},
+    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:627e04aed628aa47c74751126589d387e1fd79308b413d742fc6ddbee863cee8"},
+    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b7de9e803504ba0f6d8f992f5cac485d651b0adeb4f89177e4863025a74c7be7"},
+    {file = "psqlpy-0.6.0-cp311-none-win32.whl", hash = "sha256:dc5ef1773c44010fab1f6e788f3a30cd543108df8a11d856bc09f71056440668"},
+    {file = "psqlpy-0.6.0-cp311-none-win_amd64.whl", hash = "sha256:dc3a9276f1fb422b856393599b512219f749934952e1510be93bebefb5a3c105"},
+    {file = "psqlpy-0.6.0-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:779a41db1d6a58d6e225a14d597bfb653d0b2b26dbc1d3eab2c45b95ebb6b679"},
+    {file = "psqlpy-0.6.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:4e8ed1dea80cfcbb7f9e8a492195df60f6c0f771187b54d5a05b162baf37e5b1"},
+    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:82dcd73110d66ffcc591a6c37b1be60db86a2857a2c88b92089e1c5008c1ce84"},
+    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:999cd41a76181b10d1d5d574efae196f4ab24b02dbbc81e23b7723dade554955"},
+    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:ee9885df88f05a53aab30528982ad6b18c6be837a1e92e3fb5321f25104ea3e6"},
+    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:428d311323aa1b09fa8033260e81f5390cf045ef0f2e816daa845f23366e7357"},
+    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:4408ba56a63dd70bb3ba0329f26bb543fb80cd50f1baec576944bcb0956256b4"},
+    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:221a09a0d2f5b5ba5d2fa909af0962c54bf9ed56e1de3b206da4b50e65b87367"},
+    {file = "psqlpy-0.6.0-cp312-none-win32.whl", hash = "sha256:cce78d3210e4840c6433d9660bf447cf33ae618ae1b3ccfbf893a587de14cf12"},
+    {file = "psqlpy-0.6.0-cp312-none-win_amd64.whl", hash = "sha256:a56e83baeff8edee90dbdccfa00ab4cb02b0f017919fb96ba50fe5c041a4b066"},
+    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a4b69f672bf9055793a14f5193c165479e94b5336d14cbd696ac652f84f6b31b"},
+    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:4bf615c325e3ba8a1a0272d9cf0553461881ffadfb3f2c3d517d6ab6ae5b3e95"},
+    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:c704a81c63f82920d50d336ebbdcbde8f129344ea71f57105fbddb4a78eecf51"},
+    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:fdd4e7302b851468e6a63c30adaeb01e6ae71aef9c30bdbfc354dfa6812a3034"},
+    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:be946321b09862d8175a0447109f3c2f0d5eb457e309cad89b1e58faf05250cb"},
+    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c1845325bc04d8d675ce81ca994d8ac6b934e19900a0def25fb402a9d10662bf"},
+    {file = "psqlpy-0.6.0-cp38-none-win32.whl", hash = "sha256:feea2f07338f7cfad7deb6ad7fe3af9134bdc34bfaaed1748bb63b169a1495cd"},
+    {file = "psqlpy-0.6.0-cp38-none-win_amd64.whl", hash = "sha256:6186335b5aaaf968979426d8fa3688bf6bae80aa38f96e48a774e304edd167ec"},
+    {file = "psqlpy-0.6.0-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:d46748d267449937cadde4003034a420e3ebade9944b777f709bd6b8ad795f82"},
+    {file = "psqlpy-0.6.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:d375ecd9beb880264fae6cfcea3c53f51e2e2b8c8504ba1d799c481ea1712b46"},
+    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:88449f430a616d994d8fab03d26b822c2e82f06eea0e89462eb26dadfbb05885"},
+    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:1ba823f894c550bc0c7481d9d4cd336f07f8067338a3bd72534ba16aff8b8057"},
+    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:5955acd1241c39f94fa4d5b6748ce638130abef710843a94260c29215d8f7ca1"},
+    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:bced46d8dff1db64cc47bafa84b94e1e13e2a388dbe46823ca56db34984093f4"},
+    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:bacb23fc3f7293ddd43759b57ac6379c2037a065634b1944dbf0d2eaa14c1e7f"},
+    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3da7308ea421ab48898651dc6c6cd917a977c126c90a3df3dc37ae5a1891562e"},
+    {file = "psqlpy-0.6.0-cp39-none-win32.whl", hash = "sha256:e56e35ff4bb25c426ea479d7a5309cd8f3ca90f2909f6f77ee84a7e1618fca92"},
+    {file = "psqlpy-0.6.0-cp39-none-win_amd64.whl", hash = "sha256:4250a17c795274cdac9636727f5c6d4dd5d292831e7651763273c7d96ef3eef4"},
+    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:19535b1d59809e2e9dd2363f4226428c7eccf6ec16b06ae1f999ce5b17216ace"},
+    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:5bdde6e0b9adbe9d56dbac011103376df3f16127494b858be7b04c2e76c1552b"},
+    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8a4d55ae360bba558c1e3b889986230cbba410b8658c9fb74fbd02aa7cf75f0e"},
+    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:83dc553c8e9358bda3cd2a3b80119ccf15d923b01b046de3f238069aa0bbd932"},
+    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:1d228cdc567b331ba3e9f6f524ca6a285441bbbdb0614340d003ea06371ffd76"},
+    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0da0c52c20ff0bd6f9095664015ed1700cafb327335f34c2b3c6285113cfa138"},
+    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7800e3f717d19d55072eed339bdf41bad2cc34c8a7c27c0c58c61b11243f7602"},
+    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:dbc8aef79fbee1f0d04cf5645df3673fa8a234ee4b0761281fe4aafbb8e76b7a"},
+    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:104cfca180353b587a6d8096735d0485a59ffcf7decf5621dbaa5e3f3704685a"},
+    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:7fa97bc7476d4fa326819eefde488a559a6ec9b1f053d87a05aaa09c3778436d"},
+    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:fe135e1cd6824c0b55d22ae5cb9fc38a9ee0dd0a4d0bc6d2cd992085f67655fa"},
+    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7ce9ad6cb742c922375a04593d06aba0a5381e3d0d0745de61a43d41f3a72c5b"},
+    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6e79659399aa759e5a9fa99578e51301154100a21cd2148d4e02d26b35408c24"},
+    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:c423f2c57df8525da6b3e12a15a5eb1a8f90a8b87f56c8dcb60be2a1d1b8b45c"},
+    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:9f057096339ee2339d2d1a51a7ff40e42d1d7c57b27d4ad38f026f4ba40b40d2"},
+    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:e239d8976590c79417b7c529251d8c958529a8a76fe8bb39163f765c0dd644ef"},
+    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:0a01f6782debab065490a377a70f3f5e39b7d2342754e6acbcd90aafb4869837"},
+    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2896944859facce90b2b9b1876392f64bb883f9d31f872b191a331679410c7aa"},
+    {file = "psqlpy-0.6.0.tar.gz", hash = "sha256:efc0ef19c1212ab1e4a7a733e60491c0c84bec76bb0289c8bb29c0c63b46427d"},
 ]
 
 [[package]]
@@ -529,16 +531,16 @@ files = [
 
 [[package]]
 name = "typing-extensions"
-version = "4.11.0"
+version = "4.12.0"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.11.0-py3-none-any.whl", hash = "sha256:c1f94d72897edaf4ce775bb7558d5b79d8126906a14ea5ed1635921406c0387a"},
-    {file = "typing_extensions-4.11.0.tar.gz", hash = "sha256:83f085bd5ca59c80295fc2a82ab5dac679cbe02b9f33f7d83af68e241bea51b0"},
+    {file = "typing_extensions-4.12.0-py3-none-any.whl", hash = "sha256:b349c66bea9016ac22978d800cfff206d5f9816951f12a7d0ec5578b0a819594"},
+    {file = "typing_extensions-4.12.0.tar.gz", hash = "sha256:8cbcdc8606ebcb0d95453ad7dc5065e6237b6aa230a31e81d0f440c30fed5fd8"},
 ]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "0c7a078e24ab9ce9bb5af9325900a72aed2f5774b877f640da11192ed0013857"
+content-hash = "5785417a17011b0055f88888016d88c0a1d0e980b6a8e66976830b75fd848a85"
