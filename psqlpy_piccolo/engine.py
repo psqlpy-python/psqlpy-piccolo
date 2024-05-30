@@ -1,7 +1,7 @@
 import contextvars
 from dataclasses import dataclass
 from typing import Any, Dict, List, Mapping, Optional, Sequence
-from piccolo.engine.base import Engine
+from piccolo.engine.base import Engine, validate_savepoint_name
 from psqlpy import ConnectionPool, Connection, Transaction, Cursor
 from psqlpy.exceptions import RustPSQLDriverPyBaseError
 from piccolo.utils.warnings import Level, colored_warning
@@ -9,6 +9,7 @@ from piccolo.query.base import DDL, Query
 from piccolo.engine.base import Batch
 from piccolo.querystring import QueryString
 from piccolo.utils.sync import run_sync
+from piccolo.engine.exceptions import TransactionError
 
 
 @dataclass
@@ -61,6 +62,97 @@ class AsyncBatch(Batch):
 
         return exception is not None
 
+
+class Savepoint:
+    def __init__(self, name: str, transaction: "PostgresTransaction"):
+        self.name = name
+        self.transaction = transaction
+
+    async def rollback_to(self):
+        validate_savepoint_name(self.name)
+        await self.transaction.connection.execute(
+            f"ROLLBACK TO SAVEPOINT {self.name}"
+        )
+
+    async def release(self):
+        validate_savepoint_name(self.name)
+        await self.transaction.connection.execute(
+            f"RELEASE SAVEPOINT {self.name}"
+        )
+
+
+class PostgresTransaction:
+    def __init__(self, engine: "PSQLPyEngine", allow_nested: bool = True) -> None:
+        self.engine = engine
+        current_transaction = self.engine.current_transaction.get()
+
+        self._savepoint_id = 0
+        self._parent = None
+        self._committed = False
+        self._rolled_back = False
+
+        if current_transaction:
+            if allow_nested:
+                self._parent = current_transaction
+            else:
+                raise TransactionError(
+                    "A transaction is already active - nested transactions "
+                    "aren't allowed."
+                )
+    
+    async def __aenter__(self) -> "PostgresTransaction":
+        if self._parent is not None:
+            return self._parent
+
+        self.connection = await self.get_connection()
+        self.transaction = self.connection.transaction()
+        await self.begin()
+        self.context = self.engine.current_transaction.set(self)
+        return self
+
+    async def get_connection(self):
+        if self.engine.pool:
+            return await self.engine.pool.connection()
+        else:
+            return await self.engine.get_new_connection()
+
+    async def begin(self):
+        await self.transaction.begin()
+
+    async def commit(self):
+        await self.transaction.commit()
+        self._committed = True
+    
+    async def rollback(self):
+        await self.transaction.rollback()
+        self._rolled_back = True
+    
+    def get_savepoint_id(self) -> int:
+        self._savepoint_id += 1
+        return self._savepoint_id
+
+    async def savepoint(self, name: Optional[str] = None) -> Savepoint:
+        savepoint_name = name or f"savepoint_{self.get_savepoint_id()}"
+        validate_savepoint_name(savepoint_name)
+        await self.transaction.create_savepoint(savepoint_name=savepoint_name)
+        return Savepoint(name=savepoint_name, transaction=self)
+
+    async def __aexit__(self, exception_type, exception, traceback):
+        if self._parent:
+            return exception is None
+
+        if exception:
+            # The user may have manually rolled it back.
+            if not self._rolled_back:
+                await self.rollback()
+        else:
+            # The user may have manually committed it.
+            if not self._committed and not self._rolled_back:
+                await self.commit()
+
+        self.engine.current_transaction.reset(self.context)
+
+        return exception is None
 
 
 class PSQLPyEngine(Engine):
@@ -281,5 +373,5 @@ class PSQLPyEngine(Engine):
     def atomic(self) -> str:
         return "123"
 
-    def transaction(self, allow_nested: bool = True) -> str:
-        return "str"
+    def transaction(self, allow_nested: bool = True) -> PostgresTransaction:
+        return PostgresTransaction(engine=self, allow_nested=allow_nested)
