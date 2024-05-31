@@ -1,6 +1,6 @@
 import contextvars
 from dataclasses import dataclass
-from typing import Any, Dict, List, Mapping, Optional, Sequence
+from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
 from piccolo.engine.base import Engine, validate_savepoint_name
 from psqlpy import ConnectionPool, Connection, Transaction, Cursor
 from psqlpy.exceptions import RustPSQLDriverPyBaseError
@@ -62,6 +62,37 @@ class AsyncBatch(Batch):
 
         return exception is not None
 
+
+class Atomic:
+    __slots__ = ("engine", "queries")
+
+    def __init__(self, engine: "PSQLPyEngine") -> None:
+        self.engine = engine
+        self.queries: List[Union[Query, DDL]] = []
+    
+    def add(self, *query: Union[Query, DDL]):
+        self.queries += list(query)
+
+    async def run(self):
+        from piccolo.query.methods.objects import Create, GetOrCreate
+
+        try:
+            async with self.engine.transaction():
+                for query in self.queries:
+                    if isinstance(query, (Query, DDL, Create, GetOrCreate)):
+                        await query.run()
+                    else:
+                        raise ValueError("Unrecognised query")
+            self.queries = []
+        except Exception as exception:
+            self.queries = []
+            raise exception from exception
+    
+    def run_sync(self):
+        return run_sync(self.run())
+
+    def __await__(self):
+        return self.run().__await__()
 
 class Savepoint:
     def __init__(self, name: str, transaction: "PostgresTransaction"):
@@ -370,8 +401,8 @@ class PSQLPyEngine(Engine):
 
         return response
 
-    def atomic(self) -> str:
-        return "123"
+    def atomic(self) -> Atomic:
+        return Atomic(engine=self)
 
     def transaction(self, allow_nested: bool = True) -> PostgresTransaction:
         return PostgresTransaction(engine=self, allow_nested=allow_nested)
