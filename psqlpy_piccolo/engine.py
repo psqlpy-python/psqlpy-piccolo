@@ -1,6 +1,7 @@
 import contextvars
 from dataclasses import dataclass
 from typing import Any, Dict, List, Mapping, Optional, Sequence, Union
+from typing_extensions import Self
 from piccolo.engine.base import Engine, validate_savepoint_name
 from psqlpy import ConnectionPool, Connection, Transaction, Cursor
 from psqlpy.exceptions import RustPSQLDriverPyBaseError
@@ -14,6 +15,8 @@ from piccolo.engine.exceptions import TransactionError
 
 @dataclass
 class AsyncBatch(Batch):
+    """PostgreSQL `Cursor` representation in Python."""
+
     connection: Connection
     query: Query
     batch_size: int
@@ -24,13 +27,18 @@ class AsyncBatch(Batch):
 
     @property
     def cursor(self) -> Cursor:
+        """Return Python object which represents PostgreSQL `Cursor`.
+
+        ### Returns:
+        - `Cursor` object.
+        """
         if not self._cursor:
             raise ValueError("_cursor not set")
         return self._cursor
 
     async def next(self) -> List[Dict]:
         data = await self.cursor.fetch(self.batch_size)
-        return await self.query._process_results(data.result())
+        return data.result()
 
     def __aiter__(self):
         return self
@@ -54,26 +62,55 @@ class AsyncBatch(Batch):
         )
         return self
 
-    async def __aexit__(self, exception_type, exception, traceback):
+    async def __aexit__(self: Self, exception_type, exception, traceback):
         if exception:
-            await self._transaction.rollback()
+            await self._transaction.rollback()  # type: ignore[union-attr]
         else:
-            await self._transaction.commit()
+            await self._transaction.commit()  # type: ignore[union-attr]
 
         return exception is not None
 
 
 class Atomic:
+    """
+    This is useful if you want to build up a transaction programmatically, by
+    adding queries to it.
+
+    Usage::
+
+        transaction = engine.atomic()
+        transaction.add(Foo.create_table())
+
+        # Either:
+        transaction.run_sync()
+        await transaction.run()
+
+    """
+
     __slots__ = ("engine", "queries")
 
-    def __init__(self, engine: "PSQLPyEngine") -> None:
+    def __init__(self: Self, engine: "PSQLPyEngine") -> None:
+        """Initialize programmatically configured atomic transaction.
+        
+        ### Parameters:
+        - `engine`: engine for query executing.
+        """
         self.engine = engine
         self.queries: List[Union[Query, DDL]] = []
     
-    def add(self, *query: Union[Query, DDL]):
+    def __await__(self: Self):
+        return self.run().__await__()
+    
+    def add(self: Self, *query: Union[Query, DDL]):
+        """Add query to atomic transaction.
+        
+        ### Params:
+        - `query`: new query to add.
+        """
         self.queries += list(query)
 
-    async def run(self):
+    async def run(self: Self) -> None:
+        """Run a transaction with all added queries."""
         from piccolo.query.methods.objects import Create, GetOrCreate
 
         try:
@@ -88,24 +125,36 @@ class Atomic:
             self.queries = []
             raise exception from exception
     
-    def run_sync(self):
+    def run_sync(self: Self) -> None:
+        """Run a transaction with all added queries in sync context."""
         return run_sync(self.run())
 
-    def __await__(self):
-        return self.run().__await__()
 
 class Savepoint:
-    def __init__(self, name: str, transaction: "PostgresTransaction"):
+    """PostgreSQL `SAVEPOINT` representation in Python."""
+
+    def __init__(self: Self, name: str, transaction: "PostgresTransaction"):
+        """Initialize new `SAVEPOINT`.
+        
+        ### Parameters:
+        - `name`: name of the savepoint.
+        - `transaction`: transaction for savepoint.
+        """
         self.name = name
         self.transaction = transaction
 
-    async def rollback_to(self):
+    async def rollback_to(self: Self) -> None:
+        """Rollback transaction to current savepoint."""
         validate_savepoint_name(self.name)
         await self.transaction.connection.execute(
             f"ROLLBACK TO SAVEPOINT {self.name}"
         )
 
-    async def release(self):
+    async def release(self: Self) -> None:
+        """Release savepoint.
+        
+        The same name of this savepoint can be used one more time.
+        """
         validate_savepoint_name(self.name)
         await self.transaction.connection.execute(
             f"RELEASE SAVEPOINT {self.name}"
@@ -113,7 +162,24 @@ class Savepoint:
 
 
 class PostgresTransaction:
-    def __init__(self, engine: "PSQLPyEngine", allow_nested: bool = True) -> None:
+    """
+    Used for wrapping queries in a transaction, using a context manager.
+    Currently it's async only.
+
+    Usage::
+
+        async with engine.transaction():
+            # Run some queries:
+            await Band.select().run()
+
+    """
+    def __init__(self: Self, engine: "PSQLPyEngine", allow_nested: bool = True) -> None:
+        """Initialize new transaction.
+        
+        ### Parameters:
+        - `engine`: engine for the transaction.
+        - `allow_nested`: is nested transactions are allowed.
+        """
         self.engine = engine
         current_transaction = self.engine.current_transaction.get()
 
@@ -141,34 +207,7 @@ class PostgresTransaction:
         self.context = self.engine.current_transaction.set(self)
         return self
 
-    async def get_connection(self):
-        if self.engine.pool:
-            return await self.engine.pool.connection()
-        else:
-            return await self.engine.get_new_connection()
-
-    async def begin(self):
-        await self.transaction.begin()
-
-    async def commit(self):
-        await self.transaction.commit()
-        self._committed = True
-    
-    async def rollback(self):
-        await self.transaction.rollback()
-        self._rolled_back = True
-    
-    def get_savepoint_id(self) -> int:
-        self._savepoint_id += 1
-        return self._savepoint_id
-
-    async def savepoint(self, name: Optional[str] = None) -> Savepoint:
-        savepoint_name = name or f"savepoint_{self.get_savepoint_id()}"
-        validate_savepoint_name(savepoint_name)
-        await self.transaction.create_savepoint(savepoint_name=savepoint_name)
-        return Savepoint(name=savepoint_name, transaction=self)
-
-    async def __aexit__(self, exception_type, exception, traceback):
+    async def __aexit__(self: Self, exception_type, exception, traceback):
         if self._parent:
             return exception is None
 
@@ -185,20 +224,182 @@ class PostgresTransaction:
 
         return exception is None
 
+    async def get_connection(self: Self) -> Connection:
+        """Retrieve new connection.
+        
+        If there is a pool, return connection from the pool.
+        Otherwise, retrieve new connection and return it.
+        """
+        if self.engine.pool:
+            return await self.engine.pool.connection()
+        else:
+            return await self.engine.get_new_connection()
+
+    async def begin(self: Self) -> None:
+        """Start the transaction."""
+        await self.transaction.begin()
+
+    async def commit(self: Self) -> None:
+        """Commit the transaction."""
+        await self.transaction.commit()
+        self._committed = True
+    
+    async def rollback(self: Self) -> None:
+        """Rollback the transaction."""
+        await self.transaction.rollback()
+        self._rolled_back = True
+    
+    def get_savepoint_id(self: Self) -> int:
+        """Retrieve new savepoint id.
+        
+        ### Returns:
+        new savepoint ID.
+        """
+        self._savepoint_id += 1
+        return self._savepoint_id
+
+    async def savepoint(self: Self, name: Optional[str] = None) -> Savepoint:
+        """Create new savepoint.
+        
+        ### Parameters:
+        - `name`: name for the savepoint.
+
+        ### Returns:
+        New `Savepoint` object.
+        """
+        savepoint_name = name or f"savepoint_{self.get_savepoint_id()}"
+        validate_savepoint_name(savepoint_name)
+        await self.transaction.create_savepoint(savepoint_name=savepoint_name)
+        return Savepoint(name=savepoint_name, transaction=self)
+
 
 class PSQLPyEngine(Engine):
+    """
+    Engine for PostgreSQL.
+
+    ### Params:
+    - `config`:
+        The config dictionary is passed to the underlying database adapter,
+        asyncpg. Common arguments you're likely to need are:
+
+        * host
+        * port
+        * user
+        * password
+        * database
+
+        For example, ``{'host': 'localhost', 'port': 5432}``.
+
+        See the `asyncpg docs <https://magicstack.github.io/asyncpg/current/api/index.html#connection>`_
+        for all available options.
+
+    - `extensions`: 
+        When the engine starts, it will try and create these extensions
+        in Postgres. If you're using a read only database, set this value to an
+        empty tuple ``()``.
+
+    - `log_queries`:
+        If ``True``, all SQL and DDL statements are printed out before being
+        run. Useful for debugging.
+
+    - `log_responses`:
+        If ``True``, the raw response from each query is printed out. Useful
+        for debugging.
+
+    - `extra_nodes`:
+        If you have additional database nodes (e.g. read replicas) for the
+        server, you can specify them here. It's a mapping of a memorable name
+        to a ``PSQLPyEngine`` instance. For example::
+
+            DB = PSQLPyEngine(
+                config={'database': 'main_db'},
+                extra_nodes={
+                    'read_replica_1': PSQLPyEngine(
+                        config={
+                            'database': 'main_db',
+                            host: 'read_replicate.my_db.com'
+                        },
+                        extensions=()
+                    )
+                }
+            )
+
+        Note how we set ``extensions=()``, because it's a read only database.
+
+        When executing a query, you can specify one of these nodes instead
+        of the main database. For example::
+
+            >>> await MyTable.select().run(node="read_replica_1")
+
+    """  # noqa: E501
 
     engine_type = "postgres"
     min_version_number = 10
     
     def __init__(
-        self,
+        self: Self,
         config: Dict[str, Any],
         extensions: Sequence[str] = ("uuid-ossp",),
         log_queries: bool = False,
         log_responses: bool = False,
         extra_nodes: Optional[Mapping[str, "PSQLPyEngine"]] = None,
     ) -> None:
+        """Initialize `PSQLPyEngine`.
+        
+        ### Params:
+    - `config`:
+        The config dictionary is passed to the underlying database adapter,
+        asyncpg. Common arguments you're likely to need are:
+
+        * host
+        * port
+        * user
+        * password
+        * database
+
+        For example, ``{'host': 'localhost', 'port': 5432}``.
+
+        See the `asyncpg docs <https://magicstack.github.io/asyncpg/current/api/index.html#connection>`_
+        for all available options.
+
+    - `extensions`: 
+        When the engine starts, it will try and create these extensions
+        in Postgres. If you're using a read only database, set this value to an
+        empty tuple ``()``.
+
+    - `log_queries`:
+        If ``True``, all SQL and DDL statements are printed out before being
+        run. Useful for debugging.
+
+    - `log_responses`:
+        If ``True``, the raw response from each query is printed out. Useful
+        for debugging.
+
+    - `extra_nodes`:
+        If you have additional database nodes (e.g. read replicas) for the
+        server, you can specify them here. It's a mapping of a memorable name
+        to a ``PSQLPyEngine`` instance. For example::
+
+            DB = PSQLPyEngine(
+                config={'database': 'main_db'},
+                extra_nodes={
+                    'read_replica_1': PSQLPyEngine(
+                        config={
+                            'database': 'main_db',
+                            host: 'read_replicate.my_db.com'
+                        },
+                        extensions=()
+                    )
+                }
+            )
+
+        Note how we set ``extensions=()``, because it's a read only database.
+
+        When executing a query, you can specify one of these nodes instead
+        of the main database. For example::
+
+            >>> await MyTable.select().run(node="read_replica_1")
+        """
         if extra_nodes is None:
             extra_nodes = {}
 
@@ -217,7 +418,8 @@ class PSQLPyEngine(Engine):
 
     @staticmethod
     def _parse_raw_version_string(version_string: str) -> float:
-        """
+        """Parse version came from PostgreSQL.
+        
         The format of the version string isn't always consistent. Sometimes
         it's just the version number e.g. '9.6.18', and sometimes
         it contains specific build information e.g.
@@ -228,10 +430,8 @@ class PSQLPyEngine(Engine):
         major, minor = version_segment.split(".")[:2]
         return float(f"{major}.{minor}")
 
-    async def get_version(self) -> float:
-        """
-        Returns the version of Postgres being run.
-        """
+    async def get_version(self: Self) -> float:
+        """Retrieve the version of Postgres being run."""
         try:
             response: Sequence[Dict] = await self._run_in_new_connection(
                 "SHOW server_version"
@@ -247,10 +447,15 @@ class PSQLPyEngine(Engine):
                 version_string=version_string
             )
     
-    def get_version_sync(self) -> float:
+    def get_version_sync(self: Self) -> float:
+        """Retrieve the version of Postgres being run in sync way."""
         return run_sync(self.get_version())
 
-    async def prep_database(self):
+    async def prep_database(self: Self) -> None:
+        """Prepare database before use.
+        
+        Create all extensions specified in configuration.
+        """
         for extension in self.extensions:
             try:
                 await self._run_in_new_connection(
@@ -266,7 +471,15 @@ class PSQLPyEngine(Engine):
                     level=Level.medium,
                 )
     
-    async def start_connnection_pool(self, **kwargs) -> None:
+    async def start_connnection_pool(self: Self, **kwargs: Dict[str, Any]) -> None:
+        """Start new connection pool.
+        
+        Create and start new connection pool.
+        If connection pool already exists do nothing.
+
+        ### Parameters:
+        - `kwargs`: configuration parameters for `ConnectionPool` from PSQLPy.
+        """
         colored_warning(
             "`start_connnection_pool` is a typo - please change it to "
             "`start_connection_pool`.",
@@ -274,7 +487,8 @@ class PSQLPyEngine(Engine):
         )
         return await self.start_connection_pool()
 
-    async def close_connnection_pool(self, **kwargs) -> None:
+    async def close_connnection_pool(self: Self, **kwargs: Dict[str, Any]) -> None:
+        """Close connection pool."""
         colored_warning(
             "`close_connnection_pool` is a typo - please change it to "
             "`close_connection_pool`.",
@@ -282,7 +496,15 @@ class PSQLPyEngine(Engine):
         )
         return await self.close_connection_pool()
     
-    async def start_connection_pool(self, **kwargs) -> None:
+    async def start_connection_pool(self: Self, **kwargs: Dict[str, Any]) -> None:
+        """Start new connection pool.
+        
+        Create and start new connection pool.
+        If connection pool already exists do nothing.
+
+        ### Parameters:
+        - `kwargs`: configuration parameters for `ConnectionPool` from PSQLPy.
+        """
         if self.pool:
             colored_warning(
                 "A pool already exists - close it first if you want to create "
@@ -294,6 +516,7 @@ class PSQLPyEngine(Engine):
             self.pool = ConnectionPool(**config)
 
     async def close_connection_pool(self) -> None:
+        """Close connection pool."""
         if self.pool:
             self.pool.close()
             self.pool = None
@@ -301,13 +524,11 @@ class PSQLPyEngine(Engine):
             colored_warning("No pool is running.")
     
     async def get_new_connection(self) -> Connection:
-        """
-        Returns a new connection - doesn't retrieve it from the pool.
-        """
+        """Returns a new connection - doesn't retrieve it from the pool."""
         return await (ConnectionPool(**dict(self.config))).connection()
 
     async def batch(
-        self,
+        self: Self,
         query: Query,
         batch_size: int = 100,
         node: Optional[str] = None,
@@ -327,7 +548,20 @@ class PSQLPyEngine(Engine):
             connection=connection, query=query, batch_size=batch_size
         )
 
-    async def _run_in_pool(self, query: str, args: Optional[Sequence[Any]] = None):
+    async def _run_in_pool(
+        self: Self,
+        query: str,
+        args: Optional[Sequence[Any]] = None,
+    ) -> List[Dict[str, Any]]:
+        """Run query in the pool.
+        
+        ### Parameters:
+        - `query`: query to execute.
+        - `args`: arguments for the query.
+
+        ### Returns:
+        Result from the database as a list of dicts.
+        """
         if not self.pool:
             raise ValueError("A pool isn't currently running.")
 
@@ -340,22 +574,45 @@ class PSQLPyEngine(Engine):
         return response.result()
     
     async def _run_in_new_connection(
-        self, query: str, args: Optional[Sequence[Any]] = None
+        self: Self,
+        query: str,
+        args: Optional[Sequence[Any]] = None,
     ):
-        if args is None:
-            args = []
+        """Run query in a new connection.
+        
+        ### Parameters:
+        - `query`: query to execute.
+        - `args`: arguments for the query.
+
+        ### Returns:
+        Result from the database as a list of dicts.
+        """
         connection = await self.get_new_connection()
 
         try:
-            results = await connection.execute(query, *args)
+            results = await connection.execute(
+                querystring=query,
+                parameters=args,
+            )
         except RustPSQLDriverPyBaseError as exception:
             raise exception
 
         return results.result()
 
     async def run_querystring(
-        self, querystring: QueryString, in_pool: bool = True
-    ):
+        self: Self,
+        querystring: QueryString,
+        in_pool: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """Run querystring.
+        
+        ### Parameters:
+        - `querystring`: querystring to execute.
+        - `in_pool`: execute in pool or not.
+
+        ### Returns:
+        Result from the database as a list of dicts.
+        """
         query, query_args = querystring.compile_string(
             engine_type=self.engine_type
         )
@@ -381,7 +638,17 @@ class PSQLPyEngine(Engine):
 
         return response
     
-    async def run_ddl(self, ddl: str, in_pool: bool = True):
+    async def run_ddl(
+        self: Self,
+        ddl: str,
+        in_pool: bool = True,
+    ) -> List[Dict[str, Any]]:
+        """Run ddl query.
+        
+        ### Parameters:
+        - `ddl`: ddl to execute.
+        - `in_pool`: execute in pool or not.
+        """
         query_id = self.get_query_id()
 
         if self.log_queries:
@@ -401,8 +668,21 @@ class PSQLPyEngine(Engine):
 
         return response
 
-    def atomic(self) -> Atomic:
+    def atomic(self: Self) -> Atomic:
+        """Create new `Atomic` object.
+        
+        ### Returns:
+        New `Atomic` object to build up a transaction programmatically.
+        """
         return Atomic(engine=self)
 
-    def transaction(self, allow_nested: bool = True) -> PostgresTransaction:
+    def transaction(self: Self, allow_nested: bool = True) -> PostgresTransaction:
+        """Create new `PostgresTransaction` object.
+        
+        ### Parameters:
+        - `allow_nested`: is nested transactions are allowed.
+
+        ### Returns:
+        New instance of `PostgresTransaction`.
+        """
         return PostgresTransaction(engine=self, allow_nested=allow_nested)
