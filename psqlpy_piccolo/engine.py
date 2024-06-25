@@ -428,7 +428,8 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             default=None,
         )
         super().__init__(
-            engine_type=self.engine_type, min_version_number=self.min_version_number
+            engine_type=self.engine_type,
+            min_version_number=self.min_version_number,
         )
 
     @staticmethod
