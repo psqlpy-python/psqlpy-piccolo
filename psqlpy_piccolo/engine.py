@@ -487,7 +487,6 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
     async def start_connnection_pool(
         self: Self,
-        max_pool_size: int = 1,
         **kwargs: Dict[str, Any],
     ) -> None:
         """Start new connection pool.
