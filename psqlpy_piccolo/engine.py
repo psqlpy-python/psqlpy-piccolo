@@ -485,7 +485,11 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
                     level=Level.medium,
                 )
 
-    async def start_connnection_pool(self: Self, **kwargs: Dict[str, Any]) -> None:
+    async def start_connnection_pool(
+        self: Self,
+        max_pool_size: int = 1,
+        **kwargs: Dict[str, Any],
+    ) -> None:
         """Start new connection pool.
 
         Create and start new connection pool.
@@ -527,7 +531,10 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         else:
             config = dict(self.config)
             config.update(**kwargs)
-            self.pool = ConnectionPool(**config)
+            self.pool = ConnectionPool(
+                max_db_pool_size=config.pop("max_size"),
+                **config,
+            )
 
     async def close_connection_pool(self) -> None:
         """Close connection pool."""
