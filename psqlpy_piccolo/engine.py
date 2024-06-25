@@ -531,6 +531,8 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             config = dict(self.config)
             config.update(**kwargs)
             self.pool = ConnectionPool(
+                db_name=config.pop("database", None),
+                username=config.pop("user", None),
                 max_db_pool_size=config.pop("max_size"),
                 **config,
             )
@@ -545,11 +547,13 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
     async def get_new_connection(self) -> Connection:
         """Returns a new connection - doesn't retrieve it from the pool."""
+        config = dict(self.config)
         return await (
             ConnectionPool(
-                db_name=self.config.pop("database", None),
-                username=self.config.pop("user", None),
-                **self.config,
+                db_name=config.pop("database", None),
+                username=config.pop("user", None),
+                max_db_pool_size=config.pop("max_size"),
+                **config,
             )
         ).connection()
 
