@@ -547,6 +547,9 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
     async def get_new_connection(self) -> Connection:
         """Returns a new connection - doesn't retrieve it from the pool."""
+        if self.pool:
+            return await self.pool.connection()
+
         config = dict(self.config)
         return await (
             ConnectionPool(
