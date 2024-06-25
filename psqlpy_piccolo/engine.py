@@ -3,7 +3,7 @@ import types
 from dataclasses import dataclass
 from typing import Any, Dict, Generator, List, Mapping, Optional, Sequence, Type, Union
 
-from piccolo.engine.base import Batch, Engine, validate_savepoint_name
+from piccolo.engine.base import BaseBatch, Engine, validate_savepoint_name
 from piccolo.engine.exceptions import TransactionError
 from piccolo.query.base import DDL, Query
 from piccolo.querystring import QueryString
@@ -15,7 +15,7 @@ from typing_extensions import Self
 
 
 @dataclass
-class AsyncBatch(Batch):
+class AsyncBatch(BaseBatch):
     """PostgreSQL `Cursor` representation in Python."""
 
     connection: Connection
@@ -536,7 +536,13 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
     async def get_new_connection(self) -> Connection:
         """Returns a new connection - doesn't retrieve it from the pool."""
-        return await (ConnectionPool(**dict(self.config))).connection()
+        return await (
+            ConnectionPool(
+                db_name=self.config.pop("database", None),
+                username=self.config.pop("user", None),
+                **self.config,
+            )
+        ).connection()
 
     async def batch(
         self: Self,
