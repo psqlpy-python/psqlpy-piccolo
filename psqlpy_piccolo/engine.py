@@ -552,7 +552,6 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             ConnectionPool(
                 db_name=config.pop("database", None),
                 username=config.pop("user", None),
-                max_db_pool_size=config.pop("max_size"),
                 **config,
             )
         ).connection()
