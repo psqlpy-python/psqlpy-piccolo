@@ -427,7 +427,9 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             f"pg_current_transaction_{database_name}",
             default=None,
         )
-        super().__init__()
+        super().__init__(
+            engine_type=self.engine_type, min_version_number=self.min_version_number
+        )
 
     @staticmethod
     def _parse_raw_version_string(version_string: str) -> float:
