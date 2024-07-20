@@ -530,10 +530,13 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         else:
             config = dict(self.config)
             config.update(**kwargs)
+            print("----------------")
+            print(config)
+            print("----------------")
             self.pool = ConnectionPool(
                 db_name=config.pop("database", None),
                 username=config.pop("user", None),
-                max_db_pool_size=config.pop("max_size"),
+                max_db_pool_size=config.pop("max_size", 2),
                 **config,
             )
 
@@ -622,7 +625,6 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         Result from the database as a list of dicts.
         """
         connection = await self.get_new_connection()
-
         try:
             results = await connection.execute(
                 querystring=query,
@@ -647,6 +649,9 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         ### Returns:
         Result from the database as a list of dicts.
         """
+        print("------------------")
+        print("RUN", querystring)
+        print("------------------")
         query, query_args = querystring.compile_string(engine_type=self.engine_type)
 
         query_id = self.get_query_id()
@@ -669,7 +674,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
         if self.log_responses:
             self.print_response(query_id=query_id, response=response)
-
+        print(response)
         return response
 
     async def run_ddl(
