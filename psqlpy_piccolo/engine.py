@@ -276,6 +276,10 @@ class PostgresTransaction:
         self._savepoint_id += 1
         return self._savepoint_id
 
+    async def rollback_to(self, savepoint_name: str) -> None:
+        """Use to rollback to a savepoint just using the name."""
+        await Savepoint(name=savepoint_name, transaction=self).rollback_to()
+
     async def savepoint(self: Self, name: str | None = None) -> Savepoint:
         """Create new savepoint.
 
@@ -665,7 +669,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
         if self.log_queries:
             self.print_query(query_id=query_id, query=querystring.__str__())
-
+        print(querystring)
         # If running inside a transaction:
         current_transaction = self.current_transaction.get()
         if current_transaction:
