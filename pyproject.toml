@@ -7,8 +7,9 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-psqlpy = "^0.6.0"
-piccolo = {version = "^1.13.1", extras = ["postgres"]}
+piccolo = {version = "^1.14.0", extras = ["postgres"]}
+psqlpy = "^0.7.4"
+typing-extensions = "^4.12.2"
 
 
 [tool.poetry.group.lint.dependencies]

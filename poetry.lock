@@ -567,13 +567,13 @@ files = [
 
 [[package]]
 name = "piccolo"
-version = "1.13.1"
+version = "1.14.0"
 description = "A fast, user friendly ORM and query builder which supports asyncio."
 optional = false
 python-versions = ">=3.8.0"
 files = [
-    {file = "piccolo-1.13.1-py3-none-any.whl", hash = "sha256:3c769c46844b9e1127cb12256d8e9b8535eb62fddaabd2c8f3b7734e37ed237e"},
-    {file = "piccolo-1.13.1.tar.gz", hash = "sha256:9c98557f9ca2ab547de0f3c6008fa6cb47bbcf5e8012ffb8219c0d01d52369c1"},
+    {file = "piccolo-1.14.0-py3-none-any.whl", hash = "sha256:4e9db00bd299b9886265604481a77105d8875febdc238fa60fc459dfd81d5e7d"},
+    {file = "piccolo-1.14.0.tar.gz", hash = "sha256:d300b5da4a5dd342b8466907f2a1614715cae7a9825e632b1d46aafc6a6c7723"},
 ]
 
 [package.dependencies]
@@ -627,78 +627,92 @@ testing = ["pytest", "pytest-benchmark"]
 
 [[package]]
 name = "psqlpy"
-version = "0.6.0"
+version = "0.7.4"
 description = "Async PostgreSQL driver for Python written in Rust"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "psqlpy-0.6.0-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:7176c8ec1de5ce07a7ddfae007b07379607c75a851df53b79a905ef9b44a1d1b"},
-    {file = "psqlpy-0.6.0-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:84787f2769d7009c166ba8bc16ed3b799847059a1d5ff707ed78fa62370b7569"},
-    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:fa9bf554baf9915dba857df9c5d4a5c5ceae72718bd56cded78189214604c40d"},
-    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:37ae4ecd92eb1804b2089790773d81f53004ebfb7bff78519824ca39aef1dabd"},
-    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:f8b59b89a3dd668872a69d4f0a3f0c25abef48478f986b8b0f2fbb2be31ae12c"},
-    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:6e202fdd043bc1ad03376cf2837fa96786ec7af41f0ddc4c92268527e68b4094"},
-    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:a09c74470c4d79b7adcb2d19c5b1fc40d4f2215e9cd796081b34e283d42ad6dc"},
-    {file = "psqlpy-0.6.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3f7da0fdc8394da4479e2c2e80f4bee8c4cabd2b2d8f005134af07ca77d6c102"},
-    {file = "psqlpy-0.6.0-cp310-none-win32.whl", hash = "sha256:434e8ac863a236c20b31bda8b2ffa27cfcf2866de44b84e175ba0665f108b339"},
-    {file = "psqlpy-0.6.0-cp310-none-win_amd64.whl", hash = "sha256:197dd530765414e443f30768b402af5bf9bc8bbb5591e9793ba189021dae34d0"},
-    {file = "psqlpy-0.6.0-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:630d1027f2f0aa773ffbd118081720ff8b4dfecf6c454c5895317d6c73a3bcf5"},
-    {file = "psqlpy-0.6.0-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:c92c99ce0d23ee2091346c7fd4daccc7b1e7501c90b7f9ba6fd580adeea00512"},
-    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:54473412f696fff4aed26792f480ff4f8fed4918c21d75b2ed969f3b18be22b7"},
-    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:21b265916af2897272c427cf2b8ed36db7896d946bdba6fb04010daa393591e0"},
-    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:01a13217d300789b03a728953e75f1bb09af8c2c4388ada27400d935027372a3"},
-    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:c77d27d3a170b6e566063f1ae3701f8418ba3af182083d31c178b31772f2a8f2"},
-    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:627e04aed628aa47c74751126589d387e1fd79308b413d742fc6ddbee863cee8"},
-    {file = "psqlpy-0.6.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b7de9e803504ba0f6d8f992f5cac485d651b0adeb4f89177e4863025a74c7be7"},
-    {file = "psqlpy-0.6.0-cp311-none-win32.whl", hash = "sha256:dc5ef1773c44010fab1f6e788f3a30cd543108df8a11d856bc09f71056440668"},
-    {file = "psqlpy-0.6.0-cp311-none-win_amd64.whl", hash = "sha256:dc3a9276f1fb422b856393599b512219f749934952e1510be93bebefb5a3c105"},
-    {file = "psqlpy-0.6.0-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:779a41db1d6a58d6e225a14d597bfb653d0b2b26dbc1d3eab2c45b95ebb6b679"},
-    {file = "psqlpy-0.6.0-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:4e8ed1dea80cfcbb7f9e8a492195df60f6c0f771187b54d5a05b162baf37e5b1"},
-    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:82dcd73110d66ffcc591a6c37b1be60db86a2857a2c88b92089e1c5008c1ce84"},
-    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:999cd41a76181b10d1d5d574efae196f4ab24b02dbbc81e23b7723dade554955"},
-    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:ee9885df88f05a53aab30528982ad6b18c6be837a1e92e3fb5321f25104ea3e6"},
-    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:428d311323aa1b09fa8033260e81f5390cf045ef0f2e816daa845f23366e7357"},
-    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:4408ba56a63dd70bb3ba0329f26bb543fb80cd50f1baec576944bcb0956256b4"},
-    {file = "psqlpy-0.6.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:221a09a0d2f5b5ba5d2fa909af0962c54bf9ed56e1de3b206da4b50e65b87367"},
-    {file = "psqlpy-0.6.0-cp312-none-win32.whl", hash = "sha256:cce78d3210e4840c6433d9660bf447cf33ae618ae1b3ccfbf893a587de14cf12"},
-    {file = "psqlpy-0.6.0-cp312-none-win_amd64.whl", hash = "sha256:a56e83baeff8edee90dbdccfa00ab4cb02b0f017919fb96ba50fe5c041a4b066"},
-    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a4b69f672bf9055793a14f5193c165479e94b5336d14cbd696ac652f84f6b31b"},
-    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:4bf615c325e3ba8a1a0272d9cf0553461881ffadfb3f2c3d517d6ab6ae5b3e95"},
-    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:c704a81c63f82920d50d336ebbdcbde8f129344ea71f57105fbddb4a78eecf51"},
-    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:fdd4e7302b851468e6a63c30adaeb01e6ae71aef9c30bdbfc354dfa6812a3034"},
-    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:be946321b09862d8175a0447109f3c2f0d5eb457e309cad89b1e58faf05250cb"},
-    {file = "psqlpy-0.6.0-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:c1845325bc04d8d675ce81ca994d8ac6b934e19900a0def25fb402a9d10662bf"},
-    {file = "psqlpy-0.6.0-cp38-none-win32.whl", hash = "sha256:feea2f07338f7cfad7deb6ad7fe3af9134bdc34bfaaed1748bb63b169a1495cd"},
-    {file = "psqlpy-0.6.0-cp38-none-win_amd64.whl", hash = "sha256:6186335b5aaaf968979426d8fa3688bf6bae80aa38f96e48a774e304edd167ec"},
-    {file = "psqlpy-0.6.0-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:d46748d267449937cadde4003034a420e3ebade9944b777f709bd6b8ad795f82"},
-    {file = "psqlpy-0.6.0-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:d375ecd9beb880264fae6cfcea3c53f51e2e2b8c8504ba1d799c481ea1712b46"},
-    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:88449f430a616d994d8fab03d26b822c2e82f06eea0e89462eb26dadfbb05885"},
-    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:1ba823f894c550bc0c7481d9d4cd336f07f8067338a3bd72534ba16aff8b8057"},
-    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:5955acd1241c39f94fa4d5b6748ce638130abef710843a94260c29215d8f7ca1"},
-    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:bced46d8dff1db64cc47bafa84b94e1e13e2a388dbe46823ca56db34984093f4"},
-    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:bacb23fc3f7293ddd43759b57ac6379c2037a065634b1944dbf0d2eaa14c1e7f"},
-    {file = "psqlpy-0.6.0-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:3da7308ea421ab48898651dc6c6cd917a977c126c90a3df3dc37ae5a1891562e"},
-    {file = "psqlpy-0.6.0-cp39-none-win32.whl", hash = "sha256:e56e35ff4bb25c426ea479d7a5309cd8f3ca90f2909f6f77ee84a7e1618fca92"},
-    {file = "psqlpy-0.6.0-cp39-none-win_amd64.whl", hash = "sha256:4250a17c795274cdac9636727f5c6d4dd5d292831e7651763273c7d96ef3eef4"},
-    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:19535b1d59809e2e9dd2363f4226428c7eccf6ec16b06ae1f999ce5b17216ace"},
-    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:5bdde6e0b9adbe9d56dbac011103376df3f16127494b858be7b04c2e76c1552b"},
-    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:8a4d55ae360bba558c1e3b889986230cbba410b8658c9fb74fbd02aa7cf75f0e"},
-    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:83dc553c8e9358bda3cd2a3b80119ccf15d923b01b046de3f238069aa0bbd932"},
-    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:1d228cdc567b331ba3e9f6f524ca6a285441bbbdb0614340d003ea06371ffd76"},
-    {file = "psqlpy-0.6.0-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0da0c52c20ff0bd6f9095664015ed1700cafb327335f34c2b3c6285113cfa138"},
-    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:7800e3f717d19d55072eed339bdf41bad2cc34c8a7c27c0c58c61b11243f7602"},
-    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:dbc8aef79fbee1f0d04cf5645df3673fa8a234ee4b0761281fe4aafbb8e76b7a"},
-    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:104cfca180353b587a6d8096735d0485a59ffcf7decf5621dbaa5e3f3704685a"},
-    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:7fa97bc7476d4fa326819eefde488a559a6ec9b1f053d87a05aaa09c3778436d"},
-    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:fe135e1cd6824c0b55d22ae5cb9fc38a9ee0dd0a4d0bc6d2cd992085f67655fa"},
-    {file = "psqlpy-0.6.0-pp38-pypy38_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7ce9ad6cb742c922375a04593d06aba0a5381e3d0d0745de61a43d41f3a72c5b"},
-    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:6e79659399aa759e5a9fa99578e51301154100a21cd2148d4e02d26b35408c24"},
-    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:c423f2c57df8525da6b3e12a15a5eb1a8f90a8b87f56c8dcb60be2a1d1b8b45c"},
-    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:9f057096339ee2339d2d1a51a7ff40e42d1d7c57b27d4ad38f026f4ba40b40d2"},
-    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:e239d8976590c79417b7c529251d8c958529a8a76fe8bb39163f765c0dd644ef"},
-    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:0a01f6782debab065490a377a70f3f5e39b7d2342754e6acbcd90aafb4869837"},
-    {file = "psqlpy-0.6.0-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:2896944859facce90b2b9b1876392f64bb883f9d31f872b191a331679410c7aa"},
-    {file = "psqlpy-0.6.0.tar.gz", hash = "sha256:efc0ef19c1212ab1e4a7a733e60491c0c84bec76bb0289c8bb29c0c63b46427d"},
+    {file = "psqlpy-0.7.4-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:1c4f085727fea6efc892c1a46d44accd48b795922dca621ba0b3fccc04a12918"},
+    {file = "psqlpy-0.7.4-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:cda3ef755266232203be72481c468909ed19c0522d467c9de44160ae2a233a6b"},
+    {file = "psqlpy-0.7.4-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:d633e601375f717846118a60ef0908989ed53a632521c9e2df813b94f3af9531"},
+    {file = "psqlpy-0.7.4-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:e1167ceea3245dd9fa35637620f6ddeaa97e84034c50b14ac981f4f23170128f"},
+    {file = "psqlpy-0.7.4-cp310-cp310-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:7b2f0e8434033b7f3af88e55feb6f86c1e6c67c5692ace4c88fc92764f4e73ca"},
+    {file = "psqlpy-0.7.4-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:14e02a27abaa385d4b95f0afd1e1fb051378d7003df729bde112e8f750b8c07c"},
+    {file = "psqlpy-0.7.4-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:b0f7994e8ef538495cc263beb528090179a9e33440d403b98f19dd798ad2f5ea"},
+    {file = "psqlpy-0.7.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a26bb384e7e0ea7c750265dccfbe7462741e473c1f0e10de7fb37215078533b7"},
+    {file = "psqlpy-0.7.4-cp310-cp310-musllinux_1_2_i686.whl", hash = "sha256:b76dba536f22e747173dec4e5d887d481b2035cba61b26fbe247469a2f836721"},
+    {file = "psqlpy-0.7.4-cp310-cp310-musllinux_1_2_x86_64.whl", hash = "sha256:3d9208c9d8c1f7b18a36e0cb8cee01c16d5207871a1cfd23ebc5cd26e32cf390"},
+    {file = "psqlpy-0.7.4-cp310-none-win32.whl", hash = "sha256:5822e4f67ed7eb775f5c5227e9bed296424eb0ede4103fb94496466d35bb2dbf"},
+    {file = "psqlpy-0.7.4-cp310-none-win_amd64.whl", hash = "sha256:045eb4df47d57428d38d249da86eaa533ace0ca9c162cbd9579a6c45654e66f3"},
+    {file = "psqlpy-0.7.4-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:071964e34db0360563359ceb0999a95218cd84538dedf97de35e927d4f933cf9"},
+    {file = "psqlpy-0.7.4-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:a3abfef88651d37cc493a1b8d7733bb7f8f447daf65dc7b1c138f4def7ab62bb"},
+    {file = "psqlpy-0.7.4-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:04ff288687a4d50e4df4beb9dae77677c49e9b25af874487cc09d48ba0885b66"},
+    {file = "psqlpy-0.7.4-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:340a8a729914ef1861a0535efc585caca8312da2b8fe017f1a241e042582fe43"},
+    {file = "psqlpy-0.7.4-cp311-cp311-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:3c396199773e2a9d29b019467dcff4e4779d7e9edaeb7939453a1a8d65f6143a"},
+    {file = "psqlpy-0.7.4-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:9979ebc7729aafa2561b15b7fe8a250346a180e6afd4196a1cbe8fb9e93deb0a"},
+    {file = "psqlpy-0.7.4-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:3bde7e8ffdfcc72b2e20e9ed89ed1e3eeb4beff9f6ba4a655f34ece0dfcba53e"},
+    {file = "psqlpy-0.7.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:458ef19999922d7d7f5dba37b9563492c1d3693c05d2f3153b5c471783bd12dd"},
+    {file = "psqlpy-0.7.4-cp311-cp311-musllinux_1_2_i686.whl", hash = "sha256:c1e869534c808240319b7ee9cacfb3fd1b5cf7869ed76af0a6b527b16a0c8066"},
+    {file = "psqlpy-0.7.4-cp311-cp311-musllinux_1_2_x86_64.whl", hash = "sha256:a62b9b36dc0323424636d9282378fe39f4a7e595e569782c4edecddd961e9382"},
+    {file = "psqlpy-0.7.4-cp311-none-win32.whl", hash = "sha256:7864a9977f29b1455372da011982fbdaa79de62edd67b4bc52a73698b3cdfab3"},
+    {file = "psqlpy-0.7.4-cp311-none-win_amd64.whl", hash = "sha256:6368a18b22cb2666f88970e449cd4c6dd285f532800748349c9a258e2b2db1dd"},
+    {file = "psqlpy-0.7.4-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:4ad805190080d3589d93178da335bb1a667936c4a6527f3c8d6840618b4cf943"},
+    {file = "psqlpy-0.7.4-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:1fe3c6c640f9b41c92fee1ba00f090800aed5c33697e76c9b2493eecf4a82c6f"},
+    {file = "psqlpy-0.7.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:1a92335a8d4a23eaff25d2eeca1ff63c1cbdee8f50e0406193869ed6b41022c4"},
+    {file = "psqlpy-0.7.4-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:199f11f1c91e3e03b5562430c63c9e7b14e11dcb978587454d6c0f0f240b3983"},
+    {file = "psqlpy-0.7.4-cp312-cp312-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:a12bec498aa7cccddb078cae1f0ab54465e85b18fb958db40a339a6bed1f860e"},
+    {file = "psqlpy-0.7.4-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:682c3740be3dd1bbc01f94195861053a2f3681dd32b16e966c01bca27de70fef"},
+    {file = "psqlpy-0.7.4-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:5546f0ffdc00b646b0fe24457911185396dc32c4826bf2bf9a5fef8b5297a165"},
+    {file = "psqlpy-0.7.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:a6f0f62428986edd681cbdb2aebe767d8747e2b2dbe08747d561130263657c0f"},
+    {file = "psqlpy-0.7.4-cp312-cp312-musllinux_1_2_i686.whl", hash = "sha256:df56b2056424b6ef7421eeabe9d42e468bf5e6ece76aefea0329ea4ce69fd4c6"},
+    {file = "psqlpy-0.7.4-cp312-cp312-musllinux_1_2_x86_64.whl", hash = "sha256:6f7b4856b20e954e792f4548656a68661026ac3b298124bd64155a887b5c9d82"},
+    {file = "psqlpy-0.7.4-cp312-none-win32.whl", hash = "sha256:5ccaf51f9bc05d9c8797882ac23ac3faa38a864f80861a2ab4f52741311ddc9d"},
+    {file = "psqlpy-0.7.4-cp312-none-win_amd64.whl", hash = "sha256:42b7a918baeb8e6fdfebfcbc91d4f3b2540a200af03f1c2cf41966c9c26c02a4"},
+    {file = "psqlpy-0.7.4-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:f3508e75abfef0db752a13f0dc130868dfd4662ed6bac5953cdae66af82d5a67"},
+    {file = "psqlpy-0.7.4-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:742e7d1bbd5724a535ba3d78e0b3d380519f05e84299123398bf0398bf51630f"},
+    {file = "psqlpy-0.7.4-cp38-cp38-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:c4ac1d40ce830b9f3547c76ac4e680747ed5d36d686409e9b11e7a897feb543f"},
+    {file = "psqlpy-0.7.4-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:33079700eb153948f79374f9207a084a353817a7cf7e20e8d35d910a50c5678f"},
+    {file = "psqlpy-0.7.4-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:7a72ee200e2442eb7eb82224cd5d364bb7055ed251f6e27080893ef7227d8e93"},
+    {file = "psqlpy-0.7.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b443e8c43958ef97bbf7ae434c5195e33d055c20213e353454bbbd9c41891721"},
+    {file = "psqlpy-0.7.4-cp38-cp38-musllinux_1_2_i686.whl", hash = "sha256:78941ba29653dd314453c3757cefad24ad610a222c75e815042ac4a156570760"},
+    {file = "psqlpy-0.7.4-cp38-cp38-musllinux_1_2_x86_64.whl", hash = "sha256:db306ca1b6e57779a83804df9363a83cab8c9abf1f2b57c321aabff9bc26e725"},
+    {file = "psqlpy-0.7.4-cp38-none-win32.whl", hash = "sha256:6ef92b09bcb5a6e5fc9b235a4e703ab44df8b2e7f6a31634ec4070a513a03f57"},
+    {file = "psqlpy-0.7.4-cp38-none-win_amd64.whl", hash = "sha256:c1a665b2a9b8deaaf2a1ea1cf7b2c8b6ed5e0c97726b4a65c3f78c6e6f0dae68"},
+    {file = "psqlpy-0.7.4-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:a4844fafa84459629334fe4b8d590debb3ac356c5ae1faf0c22c8a51d726adf9"},
+    {file = "psqlpy-0.7.4-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:9836b1b33630329532f3bb5eb90d348d004a851d2dc036c0e47e2c66be94e5a2"},
+    {file = "psqlpy-0.7.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:2782c13edc6ddb2a87ab3abb0e68e2238e281491a034f97bc2bfcb5dabb785a7"},
+    {file = "psqlpy-0.7.4-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:1b795718e36261aa692181bc1257d54dba7e0e318353e649ad8d9a6e31bb58cd"},
+    {file = "psqlpy-0.7.4-cp39-cp39-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:9e57c436faca6a6416a733d0359289d00c283646b372a251e2b9ecdaa6edb4c3"},
+    {file = "psqlpy-0.7.4-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:a007249c7f42e63e152b9b7fb23e736ee7aea469b1625326d421b90d15dd91bc"},
+    {file = "psqlpy-0.7.4-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:7fd9d15837afd1ceca3548cbdbeb9f6ac2092167cb367c0f4e87338f00c53c5a"},
+    {file = "psqlpy-0.7.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7b537f06cd09db4e765a26eedcdb02838944ac38022ef95efa4b36a57bb840d6"},
+    {file = "psqlpy-0.7.4-cp39-cp39-musllinux_1_2_i686.whl", hash = "sha256:6eb6fa49b4e4fd8977e6bd4b2bc2c7a2536d8ed2f5012aacea4e4802df1f7d31"},
+    {file = "psqlpy-0.7.4-cp39-cp39-musllinux_1_2_x86_64.whl", hash = "sha256:80194e9628c8b8f35838de3c0bce17b09dc921dee047f419df85a5e92371e4c1"},
+    {file = "psqlpy-0.7.4-cp39-none-win32.whl", hash = "sha256:c8583932ec3036674d0b81489037a4cd8acf5da5b5bcbac639e6496238546cac"},
+    {file = "psqlpy-0.7.4-cp39-none-win_amd64.whl", hash = "sha256:b4366fce99f6f87d751903b719572c07a7d9e7f29e2dc25504ea3fe36547b6e3"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:25129681d4a66097fc3581f5f2e9b70d36d8bbf376518e7dfa39934cb847adcb"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:6b01f26e581a14e17107c485ca7bbb6bd8c5c47aac92d878d077212869a24d96"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:2c392828b2497f62777fcff35d903a0cd8f1cd9cd644e48cfc3ed3374fef0802"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:373e5a956ec41aa4b23e4ba31373ed20ba82586bb3663288d2a13c04b0648f84"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:3902bff56e0e225ca55525b36550f4a7d52e7f5bf1e8fb3163b1cb6be2d61c77"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b0e52aa215c6e3dd5f6d572dace086762af3a9fcbf7a8f2cd34cade885a18584"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-musllinux_1_2_i686.whl", hash = "sha256:86c1128cd9b8de731c866a091aa6c27fc915bdab3848f16d107524fdd93cf46e"},
+    {file = "psqlpy-0.7.4-pp310-pypy310_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:7b0238273bbd082ccb8d97306ff5d1e4e20c854275562da8c38151e33abe4852"},
+    {file = "psqlpy-0.7.4-pp38-pypy38_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a3a4fefde43f5ed3cf671040485f8c9f31fc5165c3dce97e535e709c1693bdc3"},
+    {file = "psqlpy-0.7.4-pp38-pypy38_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:c0f65a09c10e40bdc5dade3177e79b89b54a660e47b2d4b385a464150cd823ab"},
+    {file = "psqlpy-0.7.4-pp38-pypy38_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:e1906b4411767975859d66751aab992472fbcc4bd60111477819cc7efe56e34b"},
+    {file = "psqlpy-0.7.4-pp38-pypy38_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:0f1dc36a809ea5cc7e76fad2c607959fc4027336d53ad66c9ef2fa6840a20eb8"},
+    {file = "psqlpy-0.7.4-pp38-pypy38_pp73-musllinux_1_2_i686.whl", hash = "sha256:c3192ed1f509305281af48dc2644d084ee285f610b25038d11db2dd24e035318"},
+    {file = "psqlpy-0.7.4-pp38-pypy38_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:d57929371b66860b71794bf94ef903b70cc73ee3f142f85e78c66b03f99a8349"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:36da0531ae2fa82ab89e9fd9f883464eeb54bde70e66fa833629ce8dfb3ab6e9"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:05b17cbc3da78272add8b6d4e31604f0a44cccb975857d1d818b85be61c7db14"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-manylinux_2_17_i686.manylinux2014_i686.whl", hash = "sha256:78c615cafc543a0a4ad8718612df0593f3b83c90a6f886131fe5a6272a4d97f5"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:8274939a013a246fe36d632f5fda3293a25e930b8a35dc36d14be77ecfd72d1e"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:80da57e267053a16e0f7cc6aca9d6383271477fee4bbef7d0144b717cd8768fd"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:f392104b398507eb88e3b502b36dfc4a760877259fda8258686b814c794c73fa"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-musllinux_1_2_i686.whl", hash = "sha256:f3640c1ff2550b32f3352384146fa7635b66cdcd5fa99e629daf070500a5ea00"},
+    {file = "psqlpy-0.7.4-pp39-pypy39_pp73-musllinux_1_2_x86_64.whl", hash = "sha256:d710da9b8dea6ba7f2cdd9007c30b8416788bb7606991743222a8bac9b6bdd2a"},
+    {file = "psqlpy-0.7.4.tar.gz", hash = "sha256:111fda9a147b55acca6e962d65c172ff43c032766dd1f06251c7808aee0e1816"},
 ]
 
 [[package]]
@@ -711,26 +725,6 @@ files = [
     {file = "pycparser-2.22-py3-none-any.whl", hash = "sha256:c3702b6d3dd8c7abc1afa565d7e63d53a1d0bd86cdc24edd75470f4de499cfcc"},
     {file = "pycparser-2.22.tar.gz", hash = "sha256:491c8be9c040f5390f5bf44a5b07752bd07f56edf992381b05c701439eec10f6"},
 ]
-
-[[package]]
-name = "pydantic"
-version = "2.7.4"
-description = "Data validation using Python type hints"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "pydantic-2.7.4-py3-none-any.whl", hash = "sha256:ee8538d41ccb9c0a9ad3e0e5f07bf15ed8015b481ced539a1759d8cc89ae90d0"},
-    {file = "pydantic-2.7.4.tar.gz", hash = "sha256:0c84efd9548d545f63ac0060c1e4d39bb9b14db8b3c0652338aecc07b5adec52"},
-]
-
-[package.dependencies]
-annotated-types = ">=0.4.0"
-email-validator = {version = ">=2.0.0", optional = true, markers = "extra == \"email\""}
-pydantic-core = "2.18.4"
-typing-extensions = ">=4.6.1"
-
-[package.extras]
-email = ["email-validator (>=2.0.0)"]
 
 [[package]]
 name = "pydantic"
@@ -747,101 +741,13 @@ files = [
 annotated-types = ">=0.4.0"
 email-validator = {version = ">=2.0.0", optional = true, markers = "extra == \"email\""}
 pydantic-core = "2.20.1"
-typing-extensions = {version = ">=4.6.1", markers = "python_version < \"3.13\""}
+typing-extensions = [
+    {version = ">=4.12.2", markers = "python_version >= \"3.13\""},
+    {version = ">=4.6.1", markers = "python_version < \"3.13\""},
+]
 
 [package.extras]
 email = ["email-validator (>=2.0.0)"]
-
-[[package]]
-name = "pydantic-core"
-version = "2.18.4"
-description = "Core functionality for Pydantic validation and serialization"
-optional = false
-python-versions = ">=3.8"
-files = [
-    {file = "pydantic_core-2.18.4-cp310-cp310-macosx_10_12_x86_64.whl", hash = "sha256:f76d0ad001edd426b92233d45c746fd08f467d56100fd8f30e9ace4b005266e4"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-macosx_11_0_arm64.whl", hash = "sha256:59ff3e89f4eaf14050c8022011862df275b552caef8082e37b542b066ce1ff26"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a55b5b16c839df1070bc113c1f7f94a0af4433fcfa1b41799ce7606e5c79ce0a"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:4d0dcc59664fcb8974b356fe0a18a672d6d7cf9f54746c05f43275fc48636851"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:8951eee36c57cd128f779e641e21eb40bc5073eb28b2d23f33eb0ef14ffb3f5d"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:4701b19f7e3a06ea655513f7938de6f108123bf7c86bbebb1196eb9bd35cf724"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:e00a3f196329e08e43d99b79b286d60ce46bed10f2280d25a1718399457e06be"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:97736815b9cc893b2b7f663628e63f436018b75f44854c8027040e05230eeddb"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-musllinux_1_1_aarch64.whl", hash = "sha256:6891a2ae0e8692679c07728819b6e2b822fb30ca7445f67bbf6509b25a96332c"},
-    {file = "pydantic_core-2.18.4-cp310-cp310-musllinux_1_1_x86_64.whl", hash = "sha256:bc4ff9805858bd54d1a20efff925ccd89c9d2e7cf4986144b30802bf78091c3e"},
-    {file = "pydantic_core-2.18.4-cp310-none-win32.whl", hash = "sha256:1b4de2e51bbcb61fdebd0ab86ef28062704f62c82bbf4addc4e37fa4b00b7cbc"},
-    {file = "pydantic_core-2.18.4-cp310-none-win_amd64.whl", hash = "sha256:6a750aec7bf431517a9fd78cb93c97b9b0c496090fee84a47a0d23668976b4b0"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-macosx_10_12_x86_64.whl", hash = "sha256:942ba11e7dfb66dc70f9ae66b33452f51ac7bb90676da39a7345e99ffb55402d"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-macosx_11_0_arm64.whl", hash = "sha256:b2ebef0e0b4454320274f5e83a41844c63438fdc874ea40a8b5b4ecb7693f1c4"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:a642295cd0c8df1b86fc3dced1d067874c353a188dc8e0f744626d49e9aa51c4"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:5f09baa656c904807e832cf9cce799c6460c450c4ad80803517032da0cd062e2"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:98906207f29bc2c459ff64fa007afd10a8c8ac080f7e4d5beff4c97086a3dabd"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:19894b95aacfa98e7cb093cd7881a0c76f55731efad31073db4521e2b6ff5b7d"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:0fbbdc827fe5e42e4d196c746b890b3d72876bdbf160b0eafe9f0334525119c8"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:f85d05aa0918283cf29a30b547b4df2fbb56b45b135f9e35b6807cb28bc47951"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-musllinux_1_1_aarch64.whl", hash = "sha256:e85637bc8fe81ddb73fda9e56bab24560bdddfa98aa64f87aaa4e4b6730c23d2"},
-    {file = "pydantic_core-2.18.4-cp311-cp311-musllinux_1_1_x86_64.whl", hash = "sha256:2f5966897e5461f818e136b8451d0551a2e77259eb0f73a837027b47dc95dab9"},
-    {file = "pydantic_core-2.18.4-cp311-none-win32.whl", hash = "sha256:44c7486a4228413c317952e9d89598bcdfb06399735e49e0f8df643e1ccd0558"},
-    {file = "pydantic_core-2.18.4-cp311-none-win_amd64.whl", hash = "sha256:8a7164fe2005d03c64fd3b85649891cd4953a8de53107940bf272500ba8a788b"},
-    {file = "pydantic_core-2.18.4-cp311-none-win_arm64.whl", hash = "sha256:4e99bc050fe65c450344421017f98298a97cefc18c53bb2f7b3531eb39bc7805"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-macosx_10_12_x86_64.whl", hash = "sha256:6f5c4d41b2771c730ea1c34e458e781b18cc668d194958e0112455fff4e402b2"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-macosx_11_0_arm64.whl", hash = "sha256:2fdf2156aa3d017fddf8aea5adfba9f777db1d6022d392b682d2a8329e087cef"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4748321b5078216070b151d5271ef3e7cc905ab170bbfd27d5c83ee3ec436695"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:847a35c4d58721c5dc3dba599878ebbdfd96784f3fb8bb2c356e123bdcd73f34"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:3c40d4eaad41f78e3bbda31b89edc46a3f3dc6e171bf0ecf097ff7a0ffff7cb1"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:21a5e440dbe315ab9825fcd459b8814bb92b27c974cbc23c3e8baa2b76890077"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:01dd777215e2aa86dfd664daed5957704b769e726626393438f9c87690ce78c3"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:4b06beb3b3f1479d32befd1f3079cc47b34fa2da62457cdf6c963393340b56e9"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-musllinux_1_1_aarch64.whl", hash = "sha256:564d7922e4b13a16b98772441879fcdcbe82ff50daa622d681dd682175ea918c"},
-    {file = "pydantic_core-2.18.4-cp312-cp312-musllinux_1_1_x86_64.whl", hash = "sha256:0eb2a4f660fcd8e2b1c90ad566db2b98d7f3f4717c64fe0a83e0adb39766d5b8"},
-    {file = "pydantic_core-2.18.4-cp312-none-win32.whl", hash = "sha256:8b8bab4c97248095ae0c4455b5a1cd1cdd96e4e4769306ab19dda135ea4cdb07"},
-    {file = "pydantic_core-2.18.4-cp312-none-win_amd64.whl", hash = "sha256:14601cdb733d741b8958224030e2bfe21a4a881fb3dd6fbb21f071cabd48fa0a"},
-    {file = "pydantic_core-2.18.4-cp312-none-win_arm64.whl", hash = "sha256:c1322d7dd74713dcc157a2b7898a564ab091ca6c58302d5c7b4c07296e3fd00f"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-macosx_10_12_x86_64.whl", hash = "sha256:823be1deb01793da05ecb0484d6c9e20baebb39bd42b5d72636ae9cf8350dbd2"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-macosx_11_0_arm64.whl", hash = "sha256:ebef0dd9bf9b812bf75bda96743f2a6c5734a02092ae7f721c048d156d5fabae"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:ae1d6df168efb88d7d522664693607b80b4080be6750c913eefb77e34c12c71a"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:f9899c94762343f2cc2fc64c13e7cae4c3cc65cdfc87dd810a31654c9b7358cc"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:99457f184ad90235cfe8461c4d70ab7dd2680e28821c29eca00252ba90308c78"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:18f469a3d2a2fdafe99296a87e8a4c37748b5080a26b806a707f25a902c040a8"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b7cdf28938ac6b8b49ae5e92f2735056a7ba99c9b110a474473fd71185c1af5d"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:938cb21650855054dc54dfd9120a851c974f95450f00683399006aa6e8abb057"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-musllinux_1_1_aarch64.whl", hash = "sha256:44cd83ab6a51da80fb5adbd9560e26018e2ac7826f9626bc06ca3dc074cd198b"},
-    {file = "pydantic_core-2.18.4-cp38-cp38-musllinux_1_1_x86_64.whl", hash = "sha256:972658f4a72d02b8abfa2581d92d59f59897d2e9f7e708fdabe922f9087773af"},
-    {file = "pydantic_core-2.18.4-cp38-none-win32.whl", hash = "sha256:1d886dc848e60cb7666f771e406acae54ab279b9f1e4143babc9c2258213daa2"},
-    {file = "pydantic_core-2.18.4-cp38-none-win_amd64.whl", hash = "sha256:bb4462bd43c2460774914b8525f79b00f8f407c945d50881568f294c1d9b4443"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-macosx_10_12_x86_64.whl", hash = "sha256:44a688331d4a4e2129140a8118479443bd6f1905231138971372fcde37e43528"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-macosx_11_0_arm64.whl", hash = "sha256:a2fdd81edd64342c85ac7cf2753ccae0b79bf2dfa063785503cb85a7d3593223"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:86110d7e1907ab36691f80b33eb2da87d780f4739ae773e5fc83fb272f88825f"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-manylinux_2_17_armv7l.manylinux2014_armv7l.whl", hash = "sha256:46387e38bd641b3ee5ce247563b60c5ca098da9c56c75c157a05eaa0933ed154"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:123c3cec203e3f5ac7b000bd82235f1a3eced8665b63d18be751f115588fea30"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:dc1803ac5c32ec324c5261c7209e8f8ce88e83254c4e1aebdc8b0a39f9ddb443"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:53db086f9f6ab2b4061958d9c276d1dbe3690e8dd727d6abf2321d6cce37fa94"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:abc267fa9837245cc28ea6929f19fa335f3dc330a35d2e45509b6566dc18be23"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-musllinux_1_1_aarch64.whl", hash = "sha256:a0d829524aaefdebccb869eed855e2d04c21d2d7479b6cada7ace5448416597b"},
-    {file = "pydantic_core-2.18.4-cp39-cp39-musllinux_1_1_x86_64.whl", hash = "sha256:509daade3b8649f80d4e5ff21aa5673e4ebe58590b25fe42fac5f0f52c6f034a"},
-    {file = "pydantic_core-2.18.4-cp39-none-win32.whl", hash = "sha256:ca26a1e73c48cfc54c4a76ff78df3727b9d9f4ccc8dbee4ae3f73306a591676d"},
-    {file = "pydantic_core-2.18.4-cp39-none-win_amd64.whl", hash = "sha256:c67598100338d5d985db1b3d21f3619ef392e185e71b8d52bceacc4a7771ea7e"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-macosx_10_12_x86_64.whl", hash = "sha256:574d92eac874f7f4db0ca653514d823a0d22e2354359d0759e3f6a406db5d55d"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-macosx_11_0_arm64.whl", hash = "sha256:1f4d26ceb5eb9eed4af91bebeae4b06c3fb28966ca3a8fb765208cf6b51102ab"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:77450e6d20016ec41f43ca4a6c63e9fdde03f0ae3fe90e7c27bdbeaece8b1ed4"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:d323a01da91851a4f17bf592faf46149c9169d68430b3146dcba2bb5e5719abc"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:43d447dd2ae072a0065389092a231283f62d960030ecd27565672bd40746c507"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-musllinux_1_1_aarch64.whl", hash = "sha256:578e24f761f3b425834f297b9935e1ce2e30f51400964ce4801002435a1b41ef"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-musllinux_1_1_x86_64.whl", hash = "sha256:81b5efb2f126454586d0f40c4d834010979cb80785173d1586df845a632e4e6d"},
-    {file = "pydantic_core-2.18.4-pp310-pypy310_pp73-win_amd64.whl", hash = "sha256:ab86ce7c8f9bea87b9d12c7f0af71102acbf5ecbc66c17796cff45dae54ef9a5"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-macosx_10_12_x86_64.whl", hash = "sha256:90afc12421df2b1b4dcc975f814e21bc1754640d502a2fbcc6d41e77af5ec312"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-macosx_11_0_arm64.whl", hash = "sha256:51991a89639a912c17bef4b45c87bd83593aee0437d8102556af4885811d59f5"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:293afe532740370aba8c060882f7d26cfd00c94cae32fd2e212a3a6e3b7bc15e"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:b48ece5bde2e768197a2d0f6e925f9d7e3e826f0ad2271120f8144a9db18d5c8"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-manylinux_2_5_i686.manylinux1_i686.whl", hash = "sha256:eae237477a873ab46e8dd748e515c72c0c804fb380fbe6c85533c7de51f23a8f"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-musllinux_1_1_aarch64.whl", hash = "sha256:834b5230b5dfc0c1ec37b2fda433b271cbbc0e507560b5d1588e2cc1148cf1ce"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-musllinux_1_1_x86_64.whl", hash = "sha256:e858ac0a25074ba4bce653f9b5d0a85b7456eaddadc0ce82d3878c22489fa4ee"},
-    {file = "pydantic_core-2.18.4-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:2fd41f6eff4c20778d717af1cc50eca52f5afe7805ee530a4fbd0bae284f16e9"},
-    {file = "pydantic_core-2.18.4.tar.gz", hash = "sha256:ec3beeada09ff865c344ff3bc2f427f5e6c26401cc6113d77e372c3fdac73864"},
-]
-
-[package.dependencies]
-typing-extensions = ">=4.6.0,<4.7.0 || >4.7.0"
 
 [[package]]
 name = "pydantic-core"
@@ -1080,16 +986,16 @@ sortedcontainers = "*"
 
 [[package]]
 name = "typing-extensions"
-version = "4.12.0"
+version = "4.12.2"
 description = "Backported and Experimental Type Hints for Python 3.8+"
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "typing_extensions-4.12.0-py3-none-any.whl", hash = "sha256:b349c66bea9016ac22978d800cfff206d5f9816951f12a7d0ec5578b0a819594"},
-    {file = "typing_extensions-4.12.0.tar.gz", hash = "sha256:8cbcdc8606ebcb0d95453ad7dc5065e6237b6aa230a31e81d0f440c30fed5fd8"},
+    {file = "typing_extensions-4.12.2-py3-none-any.whl", hash = "sha256:04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d"},
+    {file = "typing_extensions-4.12.2.tar.gz", hash = "sha256:1a7ead55c7e559dd4dee8856e3a88b41225abfe1ce8df57b7c13915fe121ffb8"},
 ]
 
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.8"
-content-hash = "1c3b6614ababadcf6502f37a2511d95ab1b0f4482ddb6c792a3b556b1ca74b84"
+content-hash = "f728b678c6782a5898ec1a30c6e479683ea634bab679a5667778d6839b6aa8c6"

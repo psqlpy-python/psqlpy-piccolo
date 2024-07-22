@@ -10,9 +10,9 @@ import os
 
 from piccolo.conf.apps import AppRegistry
 
-from psqlpy_piccolo import PSQLPyEngine as Engine
+from psqlpy_piccolo import PSQLPyEngine
 
-DB = Engine(
+DB = PSQLPyEngine(
     config={
         "host": os.environ.get("PG_HOST", "127.0.0.1"),
         "port": os.environ.get("PG_PORT", 5432),

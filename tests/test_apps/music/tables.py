@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from enum import Enum
 
 from piccolo.columns import (
@@ -25,7 +27,7 @@ class Manager(Table):
     name = Varchar(length=50)
 
     @classmethod
-    def get_readable(cls) -> Readable:
+    def get_readable(cls: type[Manager]) -> Readable:
         return Readable(template="%s", columns=[cls.name])
 
 
@@ -36,7 +38,7 @@ class Band(Table):
     popularity = BigInt(default=0)
 
     @classmethod
-    def get_readable(cls) -> Readable:
+    def get_readable(cls: type[Band]) -> Readable:
         return Readable(template="%s", columns=[cls.name])
 
 
@@ -50,7 +52,7 @@ class Venue(Table):
     capacity = Integer(default=0, secret=True)
 
     @classmethod
-    def get_readable(cls) -> Readable:
+    def get_readable(cls: type[Venue]) -> Readable:
         return Readable(template="%s", columns=[cls.name])
 
 
@@ -61,7 +63,7 @@ class Concert(Table):
     venue = ForeignKey(Venue)
 
     @classmethod
-    def get_readable(cls) -> Readable:
+    def get_readable(cls: type[Concert]) -> Readable:
         return Readable(
             template="%s and %s at %s, capacity %s",
             columns=[

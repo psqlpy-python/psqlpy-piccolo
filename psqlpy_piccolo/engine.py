@@ -1,17 +1,22 @@
+from __future__ import annotations
+
 import contextvars
-import types
 from dataclasses import dataclass
-from typing import Any, Dict, Generator, List, Mapping, Optional, Sequence, Type, Union
+from typing import TYPE_CHECKING, Any, Generator, Mapping, Sequence
 
 from piccolo.engine.base import BaseBatch, Engine, validate_savepoint_name
 from piccolo.engine.exceptions import TransactionError
 from piccolo.query.base import DDL, Query
-from piccolo.querystring import QueryString
 from piccolo.utils.sync import run_sync
 from piccolo.utils.warnings import Level, colored_warning
 from psqlpy import Connection, ConnectionPool, Cursor, Transaction
 from psqlpy.exceptions import RustPSQLDriverPyBaseError
 from typing_extensions import Self
+
+if TYPE_CHECKING:
+    import types
+
+    from piccolo.querystring import QueryString
 
 
 @dataclass
@@ -23,8 +28,8 @@ class AsyncBatch(BaseBatch):
     batch_size: int
 
     # Set internally
-    _transaction: Optional[Transaction] = None
-    _cursor: Optional[Cursor] = None
+    _transaction: Transaction | None = None
+    _cursor: Cursor | None = None
 
     @property
     def cursor(self) -> Cursor:
@@ -37,11 +42,11 @@ class AsyncBatch(BaseBatch):
             raise ValueError("_cursor not set")
         return self._cursor
 
-    async def next(self) -> List[Dict[str, Any]]:
+    async def next(self) -> list[dict[str, Any]]:
         """Retrieve next batch from the Cursor.
 
         ### Returns:
-        List of dicts of results.
+        list of dicts of results.
         """
         data = await self.cursor.fetch(self.batch_size)
         return data.result()
@@ -49,7 +54,7 @@ class AsyncBatch(BaseBatch):
     def __aiter__(self: Self) -> Self:
         return self
 
-    async def __anext__(self: Self) -> List[Dict[str, Any]]:
+    async def __anext__(self: Self) -> list[dict[str, Any]]:
         response = await self.next()
         if response == []:
             raise StopAsyncIteration
@@ -70,9 +75,9 @@ class AsyncBatch(BaseBatch):
 
     async def __aexit__(
         self: Self,
-        exception_type: Optional[Type[BaseException]],
-        exception: Optional[BaseException],
-        traceback: Optional[types.TracebackType],
+        exception_type: type[BaseException] | None,
+        exception: BaseException | None,
+        traceback: types.TracebackType | None,
     ) -> bool:
         if exception:
             await self._transaction.rollback()  # type: ignore[union-attr]
@@ -98,19 +103,19 @@ class Atomic:
 
     __slots__ = ("engine", "queries")
 
-    def __init__(self: Self, engine: "PSQLPyEngine") -> None:
+    def __init__(self: Self, engine: PSQLPyEngine) -> None:
         """Initialize programmatically configured atomic transaction.
 
         ### Parameters:
         - `engine`: engine for query executing.
         """
         self.engine = engine
-        self.queries: List[Union[Query[Any, Any], DDL]] = []
+        self.queries: list[Query[Any, Any] | DDL] = []
 
     def __await__(self: Self) -> Generator[Any, None, None]:
         return self.run().__await__()
 
-    def add(self: Self, *query: Union[Query[Any, Any], DDL]) -> None:
+    def add(self: Self, *query: Query[Any, Any] | DDL) -> None:
         """Add query to atomic transaction.
 
         ### Params:
@@ -128,7 +133,7 @@ class Atomic:
                     if isinstance(query, (Query, DDL, Create, GetOrCreate)):
                         await query.run()
                     else:
-                        raise ValueError("Unrecognised query")
+                        raise TypeError("Unrecognised query")  # noqa: TRY301
             self.queries = []
         except Exception as exception:
             self.queries = []
@@ -142,7 +147,7 @@ class Atomic:
 class Savepoint:
     """PostgreSQL `SAVEPOINT` representation in Python."""
 
-    def __init__(self: Self, name: str, transaction: "PostgresTransaction") -> None:
+    def __init__(self: Self, name: str, transaction: PostgresTransaction) -> None:
         """Initialize new `SAVEPOINT`.
 
         ### Parameters:
@@ -179,7 +184,7 @@ class PostgresTransaction:
 
     """
 
-    def __init__(self: Self, engine: "PSQLPyEngine", allow_nested: bool = True) -> None:
+    def __init__(self: Self, engine: PSQLPyEngine, allow_nested: bool = True) -> None:
         """Initialize new transaction.
 
         ### Parameters:
@@ -204,7 +209,7 @@ class PostgresTransaction:
                     "aren't allowed.",
                 )
 
-    async def __aenter__(self: Self) -> "PostgresTransaction":
+    async def __aenter__(self: Self) -> Self:
         if self._parent is not None:
             return self._parent
 
@@ -218,9 +223,9 @@ class PostgresTransaction:
 
     async def __aexit__(
         self: Self,
-        exception_type: Optional[Type[BaseException]],
-        exception: Optional[BaseException],
-        traceback: Optional[types.TracebackType],
+        exception_type: type[BaseException] | None,
+        exception: BaseException | None,
+        traceback: types.TracebackType | None,
     ) -> bool:
         if self._parent:
             return exception is None
@@ -271,7 +276,7 @@ class PostgresTransaction:
         self._savepoint_id += 1
         return self._savepoint_id
 
-    async def savepoint(self: Self, name: Optional[str] = None) -> Savepoint:
+    async def savepoint(self: Self, name: str | None = None) -> Savepoint:
         """Create new savepoint.
 
         ### Parameters:
@@ -351,11 +356,11 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
     def __init__(
         self: Self,
-        config: Dict[str, Any],
+        config: dict[str, Any],
         extensions: Sequence[str] = ("uuid-ossp",),
         log_queries: bool = False,
         log_responses: bool = False,
-        extra_nodes: Optional[Mapping[str, "PSQLPyEngine"]] = None,
+        extra_nodes: Mapping[str, PSQLPyEngine] | None = None,
     ) -> None:
         """Initialize `PSQLPyEngine`.
 
@@ -421,7 +426,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         self.log_queries = log_queries
         self.log_responses = log_responses
         self.extra_nodes = extra_nodes
-        self.pool: Optional[ConnectionPool] = None
+        self.pool: ConnectionPool | None = None
         database_name = config.get("database", "Unknown")
         self.current_transaction = contextvars.ContextVar(
             f"pg_current_transaction_{database_name}",
@@ -449,7 +454,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     async def get_version(self: Self) -> float:
         """Retrieve the version of Postgres being run."""
         try:
-            response: Sequence[Dict[str, Any]] = await self._run_in_new_connection(
+            response: Sequence[dict[str, Any]] = await self._run_in_new_connection(
                 "SHOW server_version",
             )
         except ConnectionRefusedError as exception:
@@ -475,7 +480,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
                 await self._run_in_new_connection(
                     f'CREATE EXTENSION IF NOT EXISTS "{extension}"',
                 )
-            except RustPSQLDriverPyBaseError:
+            except RustPSQLDriverPyBaseError:  # noqa: PERF203
                 colored_warning(
                     f"=> Unable to create {extension} extension - some "
                     "functionality may not behave as expected. Make sure "
@@ -487,7 +492,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
     async def start_connnection_pool(
         self: Self,
-        **kwargs: Dict[str, Any],
+        **_kwargs: dict[str, Any],
     ) -> None:
         """Start new connection pool.
 
@@ -504,7 +509,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         )
         return await self.start_connection_pool()
 
-    async def close_connnection_pool(self: Self, **kwargs: Dict[str, Any]) -> None:
+    async def close_connnection_pool(self: Self, **_kwargs: dict[str, Any]) -> None:
         """Close connection pool."""
         colored_warning(
             "`close_connnection_pool` is a typo - please change it to "
@@ -513,7 +518,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         )
         return await self.close_connection_pool()
 
-    async def start_connection_pool(self: Self, **kwargs: Dict[str, Any]) -> None:
+    async def start_connection_pool(self: Self, **kwargs: dict[str, Any]) -> None:
         """Start new connection pool.
 
         Create and start new connection pool.
@@ -530,9 +535,6 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         else:
             config = dict(self.config)
             config.update(**kwargs)
-            print("----------------")
-            print(config)
-            print("----------------")
             self.pool = ConnectionPool(
                 db_name=config.pop("database", None),
                 username=config.pop("user", None),
@@ -549,7 +551,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             colored_warning("No pool is running.")
 
     async def get_new_connection(self) -> Connection:
-        """Returns a new connection - doesn't retrieve it from the pool."""
+        """Return a new connection - doesn't retrieve it from the pool."""
         if self.pool:
             return await self.pool.connection()
 
@@ -562,11 +564,21 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             )
         ).connection()
 
+    def transform_response_to_dicts(
+        self,
+        results: list[dict[str, Any]] | dict[str, Any],
+    ) -> list[dict[str, Any]]:
+        """Transform result to list of dicts."""
+        if isinstance(results, list):
+            return results
+
+        return [results]
+
     async def batch(
         self: Self,
         query: Query[Any, Any],
         batch_size: int = 100,
-        node: Optional[str] = None,
+        node: str | None = None,
     ) -> AsyncBatch:
         """Create new `AsyncBatch`.
 
@@ -588,8 +600,8 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     async def _run_in_pool(
         self: Self,
         query: str,
-        args: Optional[Sequence[Any]] = None,
-    ) -> List[Dict[str, Any]]:
+        args: Sequence[Any] | None = None,
+    ) -> list[dict[str, Any]]:
         """Run query in the pool.
 
         ### Parameters:
@@ -613,8 +625,8 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     async def _run_in_new_connection(
         self: Self,
         query: str,
-        args: Optional[Sequence[Any]] = None,
-    ) -> List[Dict[str, Any]]:
+        args: Sequence[Any] | None = None,
+    ) -> list[dict[str, Any]]:
         """Run query in a new connection.
 
         ### Parameters:
@@ -625,13 +637,11 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         Result from the database as a list of dicts.
         """
         connection = await self.get_new_connection()
-        try:
-            results = await connection.execute(
-                querystring=query,
-                parameters=args,
-            )
-        except RustPSQLDriverPyBaseError as exception:
-            raise exception
+        results = await connection.execute(
+            querystring=query,
+            parameters=args,
+        )
+        connection.back_to_pool()
 
         return results.result()
 
@@ -639,7 +649,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         self: Self,
         querystring: QueryString,
         in_pool: bool = True,
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """Run querystring.
 
         ### Parameters:
@@ -649,9 +659,6 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         ### Returns:
         Result from the database as a list of dicts.
         """
-        print("------------------")
-        print("RUN", querystring)
-        print("------------------")
         query, query_args = querystring.compile_string(engine_type=self.engine_type)
 
         query_id = self.get_query_id()
@@ -674,14 +681,14 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
         if self.log_responses:
             self.print_response(query_id=query_id, response=response)
-        print(response)
+
         return response
 
     async def run_ddl(
         self: Self,
         ddl: str,
         in_pool: bool = True,
-    ) -> List[Dict[str, Any]]:
+    ) -> list[dict[str, Any]]:
         """Run ddl query.
 
         ### Parameters:
@@ -697,7 +704,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         current_transaction = self.current_transaction.get()
         if current_transaction:
             raw_response = await current_transaction.connection.fetch(ddl)
-            raw_response.result()
+            response = raw_response.result()
         elif in_pool and self.pool:
             response = await self._run_in_pool(ddl)
         else:
