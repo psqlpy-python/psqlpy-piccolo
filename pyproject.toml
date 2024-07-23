@@ -71,6 +71,7 @@ ignore = [
     "FA",
     "ANN101",
     "ANN102",
+    "SLF001",
     "COM812",
     "ISC001",
 ]

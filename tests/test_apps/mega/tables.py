@@ -21,6 +21,7 @@ from piccolo.columns.column_types import (
 from piccolo.engine.finder import engine_finder
 from piccolo.table import Table
 
+
 engine = engine_finder()
 
 

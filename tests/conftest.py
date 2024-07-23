@@ -17,6 +17,7 @@ from tests.test_apps.music.tables import (
     Venue,
 )
 
+
 if typing.TYPE_CHECKING:
     from piccolo.table import Table
 
@@ -48,8 +49,7 @@ async def _clean_up() -> None:
 
 
 class AsyncMock(MagicMock):
-    """
-    Async MagicMock for python 3.7+.
+    """Async MagicMock for python 3.7+.
 
     This is a workaround for the fact that MagicMock is not async compatible in
     Python 3.7.

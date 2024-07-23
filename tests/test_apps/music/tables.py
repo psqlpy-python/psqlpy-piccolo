@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from enum import Enum
 
 from piccolo.columns import (
@@ -16,6 +15,7 @@ from piccolo.columns import (
 from piccolo.columns.readable import Readable
 from piccolo.engine.finder import engine_finder
 from piccolo.table import Table
+
 
 engine = engine_finder()
 ###############################################################################

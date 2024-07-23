@@ -1,4 +1,4 @@
-"""This piccolo_conf file is just here so migrations can be made for Piccolo's own internal apps.
+"""Piccolo_conf file is just here so migrations can be made for Piccolo's own internal apps.
 
 For example:
 
@@ -11,6 +11,7 @@ import os
 from piccolo.conf.apps import AppRegistry
 
 from psqlpy_piccolo import PSQLPyEngine
+
 
 DB = PSQLPyEngine(
     config={
