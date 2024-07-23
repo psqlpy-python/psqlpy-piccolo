@@ -10,7 +10,8 @@ from psqlpy_piccolo import PSQLPyEngine
 from tests.conftest import AsyncMock
 
 
-def test_extra_nodes() -> None:
+# TODO: enable this test, when all discussions here are resolved https://github.com/piccolo-orm/piccolo/issues/986  # noqa: TD002, E501
+def skip_test_extra_nodes() -> None:
     """Make sure that other nodes can be queried."""
     test_engine = engine_finder()
     assert test_engine is not None

@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 import contextvars
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Any, Generator, Mapping, Sequence
@@ -12,6 +11,7 @@ from piccolo.utils.warnings import Level, colored_warning
 from psqlpy import Connection, ConnectionPool, Cursor, Transaction
 from psqlpy.exceptions import RustPSQLDriverPyBaseError
 from typing_extensions import Self
+
 
 if TYPE_CHECKING:
     import types
@@ -88,7 +88,7 @@ class AsyncBatch(BaseBatch):
 
 
 class Atomic:
-    """This is useful if you want to build up a transaction programmatically.
+    """Useful if you want to build up a transaction programmatically.
 
     Usage::
 
@@ -205,8 +205,7 @@ class PostgresTransaction:
                 self._parent = current_transaction
             else:
                 raise TransactionError(
-                    "A transaction is already active - nested transactions "
-                    "aren't allowed.",
+                    "A transaction is already active - nested transactions aren't allowed.",
                 )
 
     async def __aenter__(self: Self) -> Self:
@@ -296,8 +295,7 @@ class PostgresTransaction:
 
 
 class PSQLPyEngine(Engine[PostgresTransaction]):
-    """
-    Engine for PostgreSQL.
+    """Engine for PostgreSQL.
 
     ### Params:
     - `config`:
@@ -334,16 +332,12 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         to a ``PSQLPyEngine`` instance. For example::
 
             DB = PSQLPyEngine(
-                config={'database': 'main_db'},
+                config={"database": "main_db"},
                 extra_nodes={
-                    'read_replica_1': PSQLPyEngine(
-                        config={
-                            'database': 'main_db',
-                            host: 'read_replicate.my_db.com'
-                        },
-                        extensions=()
+                    "read_replica_1": PSQLPyEngine(
+                        config={"database": "main_db", host: "read_replicate.my_db.com"}, extensions=()
                     )
-                }
+                },
             )
 
         Note how we set ``extensions=()``, because it's a read only database.
@@ -358,7 +352,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     engine_type = "postgres"
     min_version_number = 10
 
-    def __init__(
+    def __init__(  # noqa: PLR0913
         self: Self,
         config: dict[str, Any],
         extensions: Sequence[str] = ("uuid-ossp",),
@@ -403,16 +397,12 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
             to a ``PSQLPyEngine`` instance. For example::
 
                 DB = PSQLPyEngine(
-                    config={'database': 'main_db'},
+                    config={"database": "main_db"},
                     extra_nodes={
-                        'read_replica_1': PSQLPyEngine(
-                            config={
-                                'database': 'main_db',
-                                host: 'read_replicate.my_db.com'
-                            },
-                            extensions=()
+                        "read_replica_1": PSQLPyEngine(
+                            config={"database": "main_db", host: "read_replicate.my_db.com"}, extensions=()
                         )
-                    }
+                    },
                 )
 
             Note how we set ``extensions=()``, because it's a read only database.
@@ -507,8 +497,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         - `kwargs`: configuration parameters for `ConnectionPool` from PSQLPy.
         """
         colored_warning(
-            "`start_connnection_pool` is a typo - please change it to "
-            "`start_connection_pool`.",
+            "`start_connnection_pool` is a typo - please change it to `start_connection_pool`.",
             category=DeprecationWarning,
         )
         return await self.start_connection_pool()
@@ -516,8 +505,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     async def close_connnection_pool(self: Self, **_kwargs: dict[str, Any]) -> None:
         """Close connection pool."""
         colored_warning(
-            "`close_connnection_pool` is a typo - please change it to "
-            "`close_connection_pool`.",
+            "`close_connnection_pool` is a typo - please change it to `close_connection_pool`.",
             category=DeprecationWarning,
         )
         return await self.close_connection_pool()
@@ -533,8 +521,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         """
         if self.pool:
             colored_warning(
-                "A pool already exists - close it first if you want to create "
-                "a new pool.",
+                "A pool already exists - close it first if you want to create a new pool.",
             )
         else:
             config = dict(self.config)
@@ -669,7 +656,6 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
 
         if self.log_queries:
             self.print_query(query_id=query_id, query=querystring.__str__())
-        print(querystring)
         # If running inside a transaction:
         current_transaction = self.current_transaction.get()
         if current_transaction:

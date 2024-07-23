@@ -1,29 +1,17 @@
 repos:
-  - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v2.1.0
-    hooks:
-      - id: trailing-whitespace
-  - repo: https://github.com/pycqa/isort
-    rev: 5.12.0
-    hooks:
-      - id: isort
-        name: isort
-        pass_filenames: false
-        always_run: true
-        args: ["./"]
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.5.1
+    rev: v1.10.1
     hooks:
       - id: mypy
         name: mypy
         always_run: true
-        pass_filenames: false
-        args: ["./"]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.0.291
+    rev: v0.5.0
     hooks:
       - id: ruff
-        name: ruff check
-        pass_filenames: false
+        name: ruff-check
         always_run: true
-        args: ["./", "--fix"]
+        args: [--fix]
+      - id: ruff-format
+        name: ruff-format
+        always_run: true
