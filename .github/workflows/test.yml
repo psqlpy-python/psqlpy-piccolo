@@ -31,6 +31,13 @@ jobs:
         run: |
           poetry config virtualenvs.create false
           poetry install --all-extras --with dev
+      - name: Setup Postgres
+        uses: ./.github/actions/setup_postgres/
+        with:
+          username: postgres
+          password: postgres
+          database: piccolo
+        id: postgres
       - name: Run tests with coverage
         run: |
           pytest . --cov=. --cov-report xml
