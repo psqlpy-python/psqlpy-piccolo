@@ -23,7 +23,7 @@ $ pip install psqlpy-piccolo
 
 ## Usage
 
-Usage is as easy as possible.
+Usage is as easy as possible.  
 PSQLPy based engine has the same interface as other engines from piccolo.
 
 ```python
