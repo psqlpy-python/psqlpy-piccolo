@@ -32,11 +32,11 @@ from psqlpy_piccolo import PSQLPyEngine
 
 DB = PSQLPyEngine(
     config={
-        "host": os.environ.get("PG_HOST", "127.0.0.1"),
-        "port": os.environ.get("PG_PORT", 5432),
-        "user": os.environ.get("PG_USER", "postgres"),
-        "password": os.environ.get("PG_PASSWORD", "postgres"),
-        "database": os.environ.get("PG_DATABASE", "piccolo"),
+        "host": "127.0.0.1",
+        "port": 5432,
+        "user": "postgres",
+        "password": "postgres",
+        "database": "psqlpy-piccolo",
     },
 )
 ```
