@@ -33,7 +33,7 @@ jobs:
           poetry install --all-extras --with dev
       - name: Run tests with coverage
         run: |
-          pytest . --cov=. --cov-report xml -n 4
+          pytest . --cov=. --cov-report xml
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         with:
