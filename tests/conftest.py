@@ -3,6 +3,7 @@ import typing
 from unittest.mock import MagicMock
 
 import pytest
+from piccolo.apps.migrations.commands.forwards import run_forwards
 
 from tests.test_apps.mega.tables import MegaTable, SmallTable
 from tests.test_apps.music.tables import (
@@ -27,6 +28,13 @@ pytestmark = [pytest.mark.anyio]
 @pytest.fixture(scope="session", autouse=True)
 def anyio_backend() -> str:
     return "asyncio"
+
+
+@pytest.fixture(autouse=True, scope="session")
+async def _migrate_forward() -> None:
+    applications: typing.Final = ["mega", "music"]
+    for application_name in applications:
+        await run_forwards(app_name=application_name)
 
 
 @pytest.fixture(autouse=True)
