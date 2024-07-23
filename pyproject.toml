@@ -2,8 +2,38 @@
 name = "psqlpy-piccolo"
 version = "0.1.0"
 description = ""
-authors = ["chandr-andr (Kiselev Aleksandr) <chandr@chandr.net>"]
+authors = [
+    "chandr-andr (Kiselev Aleksandr) <chandr@chandr.net>",
+    "insani7y (Gurbanov Mikhail) <my.gurbanov@gmail.com>",
+]
 readme = "README.md"
+keywords = [
+    "python",
+    "postgresql",
+    "psqlpy",
+    "piccolo",
+    "async-engine",
+    "psqlpy-engine",
+]
+classifiers = [
+    "Typing :: Typed",
+    "Topic :: Database",
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Rust",
+    "Programming Language :: Python",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft",
+    "Operating System :: POSIX :: Linux",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
