@@ -12,13 +12,13 @@ You can install package with `pip` or `poetry`.
 poetry:
 
 ```bash
-> poetry add psqlpy-piccolo
+$ poetry add psqlpy-piccolo
 ```
 
 pip:
 
 ```bash
-> pip install psqlpy-piccolo
+$ pip install psqlpy-piccolo
 ```
 
 ## Usage
