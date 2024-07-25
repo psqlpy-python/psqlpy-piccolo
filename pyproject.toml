@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "psqlpy-piccolo"
-version = "0.1.3"
+version = "0.1.4"
 description = "PSQLPy-based engine for Piccolo-orm"
 authors = [
     "Kiselev Aleksandr <chandr@chandr.net>",
