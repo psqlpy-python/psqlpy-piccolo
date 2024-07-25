@@ -300,7 +300,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     ### Params:
     - `config`:
         The config dictionary is passed to the underlying database adapter,
-        asyncpg. Common arguments you're likely to need are:
+        psqlpy. Common arguments you're likely to need are:
 
         * host
         * port

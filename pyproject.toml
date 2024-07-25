@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "psqlpy-piccolo"
-version = "0.1.6"
+version = "0.1.7"
 description = "PSQLPy-based engine for Piccolo-orm"
 authors = [
     "chandr-andr (Kiselev Aleksandr) <chandr@chandr.net>",
@@ -41,9 +41,9 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.8"
-piccolo = { version = "^1.14.0", extras = ["postgres"] }
 psqlpy = "^0.7.4"
 typing-extensions = "^4.12.2"
+piccolo = "^1.14.0"
 
 
 [tool.poetry.group.lint.dependencies]
