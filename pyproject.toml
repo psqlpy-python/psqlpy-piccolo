@@ -1,11 +1,8 @@
 [tool.poetry]
 name = "psqlpy-piccolo"
-version = "0.1.4"
+version = "0.1.5"
 description = "PSQLPy-based engine for Piccolo-orm"
-authors = [
-    "Kiselev Aleksandr <chandr@chandr.net>",
-    "Gurbanov Mikhail <my.gurbanov@gmail.com>",
-]
+authors = ["insani7y (Gurbanov Mikhail) <my.gurbanov@gmail.com>"]
 readme = "README.md"
 keywords = [
     "python",
