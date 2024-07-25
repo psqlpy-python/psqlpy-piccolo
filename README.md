@@ -1,4 +1,4 @@
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psqlpy?style=for-the-badge)](https://pypi.org/project/psqlpy/)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/psqlpy-piccolo?style=for-the-badge)](https://pypi.org/project/psqlpy-piccolo/)
 
 # psqlpy-piccolo
 
