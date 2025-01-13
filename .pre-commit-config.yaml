@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/mirrors-mypy
-    rev: v1.10.1
+    rev: v1.14.1
     hooks:
       - id: mypy
         name: python mypy
@@ -8,7 +8,7 @@ repos:
         pass_filenames: false
         args: ["."]
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
+    rev: v0.9.1
     hooks:
       - id: ruff
         name: ruff-check
