@@ -352,7 +352,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     engine_type = "postgres"
     min_version_number = 10
 
-    def __init__(  # noqa: PLR0913
+    def __init__(
         self: Self,
         config: dict[str, Any],
         extensions: Sequence[str] = ("uuid-ossp",),
