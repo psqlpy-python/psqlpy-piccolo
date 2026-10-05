@@ -93,7 +93,7 @@ async def test_transaction_id() -> None:
 
 async def test_transaction_exists() -> None:
     """Make sure we can detect when code is within a transaction."""
-    engine: typing.Final = typing.cast(PSQLPyEngine, Manager._meta.db)
+    engine: typing.Final = typing.cast("PSQLPyEngine", Manager._meta.db)
 
     async with engine.transaction():
         assert engine.transaction_exists()

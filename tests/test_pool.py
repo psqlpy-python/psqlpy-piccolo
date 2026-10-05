@@ -11,7 +11,7 @@ from tests.test_apps.music.tables import Manager
 
 
 async def test_create_pool() -> None:
-    engine: typing.Final = typing.cast(PSQLPyEngine, Manager._meta.db)
+    engine: typing.Final = typing.cast("PSQLPyEngine", Manager._meta.db)
 
     await engine.start_connection_pool()
     assert engine.pool is not None
@@ -45,7 +45,7 @@ async def test_make_many_queries() -> None:
 
 
 async def test_proxy_methods() -> None:
-    engine: typing.Final = typing.cast(PSQLPyEngine, Manager._meta.db)
+    engine: typing.Final = typing.cast("PSQLPyEngine", Manager._meta.db)
 
     # Deliberate typo ('nnn'):
     await engine.start_connnection_pool()
