@@ -16,7 +16,7 @@ def skip_test_extra_nodes() -> None:
     test_engine = engine_finder()
     assert test_engine is not None
 
-    test_engine = typing.cast(PSQLPyEngine, test_engine)
+    test_engine = typing.cast("PSQLPyEngine", test_engine)
 
     EXTRA_NODE: typing.Final = MagicMock(spec=PSQLPyEngine(config=test_engine.config))  # noqa: N806
     EXTRA_NODE.run_querystring = AsyncMock(return_value=[])
