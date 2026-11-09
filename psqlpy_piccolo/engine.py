@@ -352,7 +352,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
     engine_type = "postgres"
     min_version_number = 10
 
-    def __init__(  # noqa: PLR0913
+    def __init__(
         self: Self,
         config: dict[str, Any],
         extensions: Sequence[str] = ("uuid-ossp",),
@@ -441,7 +441,7 @@ class PSQLPyEngine(Engine[PostgresTransaction]):
         '12.4 (Ubuntu 12.4-0ubuntu0.20.04.1)'. Just extract the major and
         minor version numbers.
         """
-        version_segment = version_string.split(" ")[0]
+        version_segment = version_string.split(" ", maxsplit=1)[0]
         major, minor = version_segment.split(".")[:2]
         return float(f"{major}.{minor}")
 
