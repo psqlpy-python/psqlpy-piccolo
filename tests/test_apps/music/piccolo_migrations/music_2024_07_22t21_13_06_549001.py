@@ -525,7 +525,7 @@ async def forwards() -> None:
         column_class_name="Numeric",
         column_class=Numeric,
         params={
-            "default": decimal.Decimal("0"),
+            "default": decimal.Decimal(0),
             "digits": (5, 2),
             "null": False,
             "primary_key": False,
